@@ -1,0 +1,27 @@
+.game {
+display: flex;
+flex-direction: row;
+}
+
+.game-info {
+margin-left: 20px;
+}
+
+.etage {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+}
+.porte {
+width: 300px;
+height: 150px;
+background-color: dimgray;
+margin: 4px;
+}
+
+.salle {
+width: 300px;
+height: 150px;
+background-color: firebrick;
+margin: 4px;
+}
