@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Donjon from './component/Donjon';
-import './index.css';
 import './style.css';
+import Game from './component/Game';
 
 ReactDOM.render(
-    <Donjon />,
+    <Game />,
     document.getElementById('root'),
   );

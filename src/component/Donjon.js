@@ -6,22 +6,38 @@ class Donjon extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            etage: 0,
+            donjon: props.donjon
         }
+        this.descendre();
+
+    }
+
+    ouvrirPorte = (index) => {
+        let donjon = this.state.donjon;
+        donjon.etage[donjon.etage.length -1].isOpen = true;
+        this.setState({
+            donjon: donjon
+        })
     }
 
     descendre(){
+        let donjon = this.state.donjon;
+        donjon.etage.push({portes: Array(4).fill({isOpen: false})});
+    
         this.setState({
-            etage : this.state.etage -1
+            donjon : donjon
         })
     }
 
     render() {
-        const etage = this.state.etage;
         return (
-            <div className='games'>
-                <h2>Etage {etage}</h2>
-                <Etage etage={etage} />
+            <div className='donjon'>
+                <h2>Etage -{this.state.donjon.etage.length}</h2>
+                <Etage 
+                    move={this.props.move} 
+                    openDoor = {this.ouvrirPorte} 
+                    donjon ={this.props.donjon}
+                />
                 <button onClick={() => this.descendre()}>Descendre</button>
             </div>
         );

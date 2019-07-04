@@ -8,7 +8,9 @@ class Salle extends React.Component {
     render() {
         return (
             <div className = "salle">
-                Monstre
+                <div>Combattre le Monstre</div>
+                <button onClick={()=>{this.props.move("Donjon",this.props.donjon)}}>Gagné</button>
+                <button>Perdu</button>
             </div>
         );
     }

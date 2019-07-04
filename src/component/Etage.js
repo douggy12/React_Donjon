@@ -1,21 +1,17 @@
 import React from 'react';
-import Salle from './Salle';
-
 
 class Etage extends React.Component {
-    portes = Array(4).fill({
-        isOpen: false,
-    });
-
+    
     constructor(props) {
         super(props);
-        console.log("yop");
+        
         this.state = {
             temps: 0,
             isExplored: false,
             etage: props.etage,
             portes: this.portes
         }
+        
 
     }
     componentWillReceiveProps(props) {
@@ -24,7 +20,7 @@ class Etage extends React.Component {
             this.portes = Array(4).fill({
                 isOpen: false,
             });
-            console.log('set');
+            
             this.setState({ etage: props.etage, temps: 0, isExplored: false });
         }
     }
@@ -51,6 +47,9 @@ class Etage extends React.Component {
             portes: this.portes
         })
     }
+    rentrer(index){
+        this.props.move("Salle");
+    }
 
     render() {
 
@@ -60,12 +59,14 @@ class Etage extends React.Component {
 
             if (this.portes[index].isOpen) {
                 
-                return <button className = "opened-door">Monstre</button>
+                return <button  key={index} className = "opened-door" onClick={() => {
+                    this.rentrer(index);
+                    }}>Monstre</button>
             } else {
                 
                 return (
                     <button key={index} className="door" onClick={() => {
-                        this.ouvrirPorte(index);
+                        this.props.openDoor(index);
                     }
                     }>
 
