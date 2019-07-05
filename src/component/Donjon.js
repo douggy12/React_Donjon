@@ -1,6 +1,6 @@
 import React from 'react';
 import Etage from './Etage';
-
+import Utils from '../utils/Utils';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -11,18 +11,28 @@ class Donjon extends React.Component {
         this.descendre();
 
     }
+    
 
     ouvrirPorte = (index) => {
         let donjon = this.state.donjon;
-        donjon.etage[donjon.etage.length -1].isOpen = true;
+        Utils.last(Utils.last(donjon.etages).couloirs).portes[index] = {isOpen : true};
         this.setState({
             donjon: donjon
         })
     }
 
+    explorer = () => {
+        let donjon = this.state.donjon;
+        Utils.last(donjon.etages).couloirs.push({portes: Array(4).fill({isOpen: false})});
+        this.setState({donjon: donjon});
+        
+    }
+
     descendre(){
         let donjon = this.state.donjon;
-        donjon.etage.push({portes: Array(4).fill({isOpen: false})});
+        donjon.etages.push({
+            couloirs:[{portes: Array(4).fill({isOpen: false})}]
+        });
     
         this.setState({
             donjon : donjon
@@ -32,9 +42,10 @@ class Donjon extends React.Component {
     render() {
         return (
             <div className='donjon'>
-                <h2>Etage -{this.state.donjon.etage.length}</h2>
+                <h2>Etage -{this.state.donjon.etages.length}</h2>
                 <Etage 
-                    move={this.props.move} 
+                    move={this.props.move}
+                    explorer={this.explorer}
                     openDoor = {this.ouvrirPorte} 
                     donjon ={this.props.donjon}
                 />

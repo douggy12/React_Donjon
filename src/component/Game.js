@@ -9,7 +9,9 @@ class Game extends React.Component {
         this.state = {
             currentState: "Donjon",
             donjon:{
-                etage: [],
+                etages: [{
+                    couloirs:[]
+                }],
                 
             }
         }
