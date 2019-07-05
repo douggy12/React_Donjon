@@ -12,7 +12,9 @@ class Etage extends React.Component {
     }
        
     rentrer(index){
-        this.props.move("Salle");
+        let donjon = this.props.donjon;
+        Utils.last(Utils.last(donjon.etages).couloirs).portes[index].status = "fight"
+        this.props.move("Salle",this.props.donjon);
     }
 
     componentWillReceiveProps(props) { 
@@ -29,12 +31,12 @@ class Etage extends React.Component {
         const isExplored = temps === 24;
         const portes = Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.map((porte, index) => {
 
-            if (porte.isOpen) {
+            if (porte.status === "open") {
                 
                 return <button  key={index} className = "opened-door" onClick={() => {
                     this.rentrer(index);
                     }}>Monstre</button>
-            } else {
+            } else if (porte.status === "close"){
                 
                 return (
                     <button key={index} className="door" onClick={() => {
@@ -44,6 +46,12 @@ class Etage extends React.Component {
 
                     </button>
                 );
+            } else if (porte.status === "defeat"){
+                return (
+                    <div key={index} className="defeat">
+                        X
+                    </div>
+                ); 
             }
         })
         return (

@@ -5,15 +5,15 @@ import Salle from './Salle';
 class Game extends React.Component {
     constructor(){
         super();
-    
+        const donjon = {
+            etages:[
+                {
+                couloirs:[{portes: Array(4).fill({status: "close"})}]
+                }
+        ]};
         this.state = {
             currentState: "Donjon",
-            donjon:{
-                etages: [{
-                    couloirs:[]
-                }],
-                
-            }
+            donjon: donjon,
         }
     }
     move = (destination,donjon) =>{
