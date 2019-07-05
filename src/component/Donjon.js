@@ -9,7 +9,7 @@ class Donjon extends React.Component {
         this.state = {
             donjon: props.donjon
         } 
-
+        console.log("donjon:construct");
     }
     
 

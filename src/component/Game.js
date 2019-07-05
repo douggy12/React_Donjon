@@ -1,6 +1,7 @@
 import React from 'react';
 import Donjon from './Donjon';
 import Salle from './Salle';
+import Mort from './Mort';
 
 class Game extends React.Component {
     constructor(){
@@ -15,6 +16,7 @@ class Game extends React.Component {
             currentState: "Donjon",
             donjon: donjon,
         }
+        console.log("game : construct");
     }
     move = (destination,donjon) =>{
         this.setState({
@@ -27,6 +29,8 @@ class Game extends React.Component {
             return <Donjon move={this.move} donjon={this.state.donjon}/>;
         }else if (this.state.currentState === "Salle"){
             return <Salle move={this.move} donjon={this.state.donjon}/>;
+        }else if (this.state.currentState === "Mort"){
+            return <Mort donjon={this.state.donjon}/>
         }
     }
     render() {
