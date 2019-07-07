@@ -3,9 +3,7 @@ import Utils from '../utils/Utils';
 
 
 class Salle extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
     gagner() {
         Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
         return this.props.move("Donjon",this.props.donjon);
