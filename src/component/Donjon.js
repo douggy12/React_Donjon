@@ -53,13 +53,13 @@ class Donjon extends React.Component {
         const etage = portes.map((porte, index) => {
             if (porte.status === "open") {
 
-                return <button key={index} className="opened-door" onClick={() => {
+                return <button key={index} className="door open" onClick={() => {
                     this.rentrer(index);
                 }}>Monstre</button>
             } else if (porte.status === "close") {
 
                 return (
-                    <button key={index} className="door" onClick={() => {
+                    <button key={index} className="door close" onClick={() => {
                         this.ouvrirPorte(index);
                     }
                     }>
@@ -68,11 +68,17 @@ class Donjon extends React.Component {
                 );
             } else if (porte.status === "defeat") {
                 return (
-                    <div key={index} className="defeat">
+                    <div key={index} className="door defeat">
                         X
                 </div>
                 );
-            } else {
+            } else if(porte.status === "boss"){
+                return(
+                <button key={index} className="door boss" onClick={() => {
+                    this.rentrer(index);
+                }}>Boss</button>
+                );
+            }else {
                 return null;
             }
         });
