@@ -23,3 +23,10 @@ background-color: gold;
     text-align: center;
     line-height: 100%
 }
+.door.boss {
+    background-color: firebrick;
+    color: black;
+    font-size: 100px;
+    text-align: center;
+    line-height: 100%
+}
