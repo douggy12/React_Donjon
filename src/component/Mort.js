@@ -1,6 +1,4 @@
 import React from 'react';
-import Game from './Game';
-//import Utils from '../utils/Utils';
 
 class Mort extends React.Component {
 
@@ -9,22 +7,21 @@ class Mort extends React.Component {
         this.state = { restart: false }
     }
     recommencer() {
-        this.setState({ restart: true });
+        console.log("restart requis");
+        const donjon = this.props.donjon;
+        donjon.reset();
+        this.props.move("Donjon",donjon);
     }
 
     render() {
-        if (this.state.restart) {
-            return (
-                <Game />
-            );
-        } else {
+
             return (
                 <div className="mort">
                     Vous êtes mort dans d'atroces souffrances !
                 <button onClick={() => this.recommencer()}>Recommencer !</button>
                 </div>
             );
-        }
+        
     }
 }
 export default Mort;
