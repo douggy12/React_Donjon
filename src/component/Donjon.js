@@ -11,7 +11,6 @@ class Donjon extends React.Component {
         console.log("donjon:construct");
     }
 
-
     ouvrirPorte(index) {
         let donjon = this.state.donjon;
         Utils.last(Utils.last(donjon.etages).couloirs).portes[index] = { status: "open" };

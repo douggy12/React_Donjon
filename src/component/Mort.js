@@ -12,16 +12,13 @@ class Mort extends React.Component {
         donjon.reset();
         this.props.move("Donjon",donjon);
     }
-
     render() {
-
             return (
                 <div className="mort">
                     Vous êtes mort dans d'atroces souffrances !
                 <button onClick={() => this.recommencer()}>Recommencer !</button>
                 </div>
-            );
-        
+            );        
     }
 }
 export default Mort;
