@@ -2,14 +2,18 @@ import React from 'react';
 import Donjon from './Donjon';
 import Salle from './Salle';
 import Mort from './Mort';
+import Utils from '../utils/Utils';
 
 class Game extends React.Component {
     constructor(){
         super();
         const donjon = {
+            boss: {
+                etage:10
+            },
             etages:[
                 {
-                couloirs:[{portes: Array(4).fill({status: "close"})}]
+                couloirs:[Utils.getEmptyHall(4)]
                 }
         ]};
         this.state = {

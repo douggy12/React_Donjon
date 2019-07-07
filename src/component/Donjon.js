@@ -23,7 +23,7 @@ class Donjon extends React.Component {
 
     explorer = () => {
         let donjon = this.state.donjon;
-        Utils.last(donjon.etages).couloirs.push({portes: Array(4).fill({status:"close"})});
+        Utils.last(donjon.etages).couloirs.push(Utils.getEmptyHall(4));
         this.setState({donjon: donjon});
         
     }
@@ -31,7 +31,7 @@ class Donjon extends React.Component {
     descendre(){
         let donjon = this.state.donjon;
         donjon.etages.push({
-            couloirs:[{portes: Array(4).fill({status:"close"})}]
+            couloirs:[Utils.getEmptyHall(4)]
         });
     
         this.setState({
