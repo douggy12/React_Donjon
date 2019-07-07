@@ -4,22 +4,29 @@ display: flex;
 flex-wrap: wrap;
 align-items: center;
 }
-.door, .opened-door, .defeat {
+.door{
     width: 300px;
     height: 150px;
     margin: 4px;
 }
-.door {
+.door.close{
 background-color: dimgray;
 }
 
-.opened-door {
+.door.open {
 background-color: gold;
 }
-.defeat {
+.door.defeat {
     background-color: black;
     color: white;
     font-size: 150px;
+    text-align: center;
+    line-height: 100%
+}
+.door.boss {
+    background-color: firebrick;
+    color: black;
+    font-size: 100px;
     text-align: center;
     line-height: 100%
 }

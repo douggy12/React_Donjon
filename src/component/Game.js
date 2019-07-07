@@ -5,20 +5,11 @@ import Mort from './Mort';
 import Utils from '../utils/Utils';
 
 class Game extends React.Component {
-    constructor(){
-        super();
-        const donjon = {
-            boss: {
-                etage:10
-            },
-            etages:[
-                {
-                couloirs:[Utils.getEmptyHall(4)]
-                }
-        ]};
+    constructor(props){
+        super(props);
         this.state = {
             currentState: "Donjon",
-            donjon: donjon,
+            donjon: this.props.donjon,
         }
         console.log("game : construct");
     }
@@ -34,7 +25,7 @@ class Game extends React.Component {
         }else if (this.state.currentState === "Salle"){
             return <Salle move={this.move} donjon={this.state.donjon}/>;
         }else if (this.state.currentState === "Mort"){
-            return <Mort donjon={this.state.donjon}/>
+            return <Mort move={this.move} donjon={this.state.donjon}/>
         }
     }
     render() {

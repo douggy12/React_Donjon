@@ -12,7 +12,7 @@ class Salle extends React.Component {
     }
 
     render() {
-        console.log(this.props.donjon);
+       
         return (
             <div className = "salle">
                 <div>Combattre le Monstre</div>
