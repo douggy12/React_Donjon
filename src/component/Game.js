@@ -8,6 +8,7 @@ class Game extends React.Component {
     constructor(){
         super();
         const donjon = {
+            isExplored: false,
             boss: {
                 etage:10
             },

@@ -35,10 +35,15 @@ class Donjon extends React.Component {
 
     descendre() {
         let donjon = this.state.donjon;
-        donjon.etages.push({
-            couloirs: [Utils.getEmptyHall(4)]
-        });
-
+        if (donjon.etages.length === donjon.boss.etage) {
+            donjon.isExplored = true;
+            donjon.etages.push({ couloirs: [{ portes: [{ status: "boss" }] }] });
+            console.log(donjon);
+        } else {
+            donjon.etages.push({
+                couloirs: [Utils.getEmptyHall(4)]
+            });
+        }
         this.setState({
             donjon: donjon
         })
@@ -75,9 +80,9 @@ class Donjon extends React.Component {
     }
 
     render() {
-        const temps = (Utils.last(this.props.donjon.etages).couloirs.length - 1) * 4;
-        const isExplored = temps === 24;
-        const etage = this.renderEtage(Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes)
+        const temps = (Utils.last(this.state.donjon.etages).couloirs.length - 1) * 4;
+        const etageIsExplored = temps === 24;
+        const etage = this.renderEtage(Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes)
 
 
         return (
@@ -90,9 +95,9 @@ class Donjon extends React.Component {
                     {etage}
                 </div>
 
-                {!isExplored && <button onClick={() => this.explorer()}>Explorer</button>}
+                {!etageIsExplored && <button onClick={() => this.explorer()}>Explorer</button>}
 
-                <button onClick={() => this.descendre()}>Descendre</button>
+                {!this.state.donjon.isExplored && <button onClick={() => this.descendre()}>Descendre</button>}
             </div>
         );
     }
