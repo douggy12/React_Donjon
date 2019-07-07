@@ -1,0 +1,25 @@
+
+.etage {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+}
+.door, .opened-door, .defeat {
+    width: 300px;
+    height: 150px;
+    margin: 4px;
+}
+.door {
+background-color: dimgray;
+}
+
+.opened-door {
+background-color: gold;
+}
+.defeat {
+    background-color: black;
+    color: white;
+    font-size: 150px;
+    text-align: center;
+    line-height: 100%
+}
