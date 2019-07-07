@@ -101,7 +101,7 @@ class Donjon extends React.Component {
                     {etage}
                 </div>
 
-                {!etageIsExplored && <button onClick={() => this.explorer()}>Explorer</button>}
+                {!etageIsExplored && !this.state.donjon.isExplored && <button onClick={() => this.explorer()}>Explorer</button>}
 
                 {!this.state.donjon.isExplored && <button onClick={() => this.descendre()}>Descendre</button>}
             </div>
