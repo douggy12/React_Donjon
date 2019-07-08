@@ -72,6 +72,9 @@ background-color: gold;
     width:30px;
     margin: 2px;
 }
+.de.focus {
+    border: 1px solid white;
+}
 .hero .force .de {
     background-color: peru;
 }

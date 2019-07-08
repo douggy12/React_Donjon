@@ -8,6 +8,7 @@ class Salle extends React.Component {
         this.state = {
             donjon: props.donjon,
             hero: props.hero,
+            stockDe: this.getStockDe(props.hero.stats),
             monstre: {
                 nom: "Rat affamé",
                 stats: [
@@ -15,7 +16,16 @@ class Salle extends React.Component {
                     {type:"force",nb:3,isFill:false},
                     {type:"agilite",nb:2,isFill:false}
                 ]
-            }
+            },
+            selectedDice: {type:null,index:null},
+        }
+    }
+
+    getStockDe(stats){
+        return {
+            force: Array(stats.force).fill({value:null,isDispo:true}),
+            agilite: Array(stats.agilite).fill({value:null,isDispo:true}),
+            magie: Array(stats.magie).fill({value:null,isDispo:true}),
         }
     }
 
@@ -32,12 +42,14 @@ class Salle extends React.Component {
         return barreSante;
     }
 
-    renderStockDes(nbDes) {
-        let des = [];
-        for (let i = 0; i < nbDes; i++) {
-            des.push(<div key={i} className="de"></div>);
+    isSelectedDice(type,index){
+        if(type===this.state.selectedDice.type && index===this.state.selectedDice.index){
+            return true;
         }
-        return des;
+        return false;
+    }
+    renderStockDes(listDe, type) {
+        return listDe.map((de,index)=><div key={index} className={"de " + (this.isSelectedDice(type,index)?"focus":"")} onClick={()=>this.setState({selectedDice: {type:type,index:index}})}></div>);
     }
 
     renderMonstrestats(stat,index){
@@ -61,15 +73,15 @@ class Salle extends React.Component {
                         <div className="stats">
                             <div className="force">
                                 <div className="titre">Force</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.hero.force)}</div>
+                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.force, "force")}</div>
                             </div>
                             <div className="agilite">
                                 <div className="titre">Agilite</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.hero.agilite)}</div>
+                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.agilite, "agilite")}</div>
                             </div>
                             <div className="magie">
                                 <div className="titre">Magie</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.hero.magie)}</div>
+                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.magie, "magie")}</div>
                             </div>
                         </div>
                     </div>
