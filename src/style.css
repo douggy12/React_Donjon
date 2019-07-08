@@ -30,3 +30,54 @@ background-color: gold;
     text-align: center;
     line-height: 100%
 }
+.salle {
+    
+}
+.combat{
+    background-color: blueviolet;
+    display: flex;
+}
+.hero {
+    background-color: rgb(217, 242, 243);
+    flex: 1;
+
+}
+.monstre {
+    background-color: antiquewhite;
+    flex: 1;
+}
+.hero .sante {
+    display: flex;
+    color: rgb(148, 0, 0);
+}
+.hero .topbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.hero .stats {
+    display: flex;
+}
+.hero .titre {
+    padding: 3px;
+}
+.hero .stock-des {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+.hero .de {
+    height:30px;
+    width:30px;
+    margin: 2px;
+}
+.hero .force .de {
+    background-color: peru;
+}
+.hero .agilite .de {
+    background-color: mediumseagreen;
+}
+.hero .magie .de {
+    background-color: navy;
+}

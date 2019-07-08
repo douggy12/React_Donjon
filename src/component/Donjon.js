@@ -6,7 +6,8 @@ class Donjon extends React.Component {
 
         super(props);
         this.state = {
-            donjon: props.donjon
+            donjon: props.donjon,
+            hero: props.hero
         }
         console.log("donjon:construct");
     }
@@ -29,7 +30,7 @@ class Donjon extends React.Component {
     rentrer(index) {
         let donjon = this.props.donjon;
         Utils.last(Utils.last(donjon.etages).couloirs).portes[index].status = "fight"
-        this.props.move("Salle", this.props.donjon);
+        this.props.move("Salle", this.props.donjon,this.props.hero);
     }
 
     descendre() {
@@ -37,7 +38,7 @@ class Donjon extends React.Component {
         if (donjon.etages.length === donjon.boss.etage) {
             donjon.isExplored = true;
             donjon.etages.push({ couloirs: [{ portes: [{ status: "boss" }] }] });
-            console.log(donjon);
+            
         } else {
             donjon.etages.push({
                 couloirs: [donjon.getEmptyHall(4)]

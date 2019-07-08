@@ -10,22 +10,24 @@ class Game extends React.Component {
         this.state = {
             currentState: "Donjon",
             donjon: this.props.donjon,
+            hero : this.props.hero
         }
         console.log("game : construct");
     }
-    move = (destination,donjon) =>{
+    move = (destination,donjon,hero) =>{
         this.setState({
             currentState: destination,
-            donjon: donjon
+            donjon: donjon,
+            hero: hero
         });
     }
     route(){
         if(this.state.currentState === "Donjon"){
-            return <Donjon move={this.move} donjon={this.state.donjon}/>;
+            return <Donjon move={this.move} donjon={this.state.donjon} hero={this.state.hero}/>;
         }else if (this.state.currentState === "Salle"){
-            return <Salle move={this.move} donjon={this.state.donjon}/>;
+            return <Salle move={this.move} donjon={this.state.donjon} hero={this.state.hero}/>;
         }else if (this.state.currentState === "Mort"){
-            return <Mort move={this.move} donjon={this.state.donjon}/>
+            return <Mort move={this.move} donjon={this.state.donjon} hero={this.state.hero}/>
         }
     }
     render() {
