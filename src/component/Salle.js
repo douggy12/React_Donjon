@@ -42,7 +42,7 @@ class Salle extends React.Component {
 
     renderMonstrestats(stat,index){
         return(
-            <div key={index} className={stat.type + " stat" + (stat.isFill?" fill":" empty")}>D</div>
+            <div key={index} className={stat.type + " de" + (stat.isFill?" fill":" empty")}></div>
         );
     }
 

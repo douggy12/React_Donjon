@@ -43,20 +43,20 @@ background-color: gold;
 
 }
 .monstre {
-    background-color: antiquewhite;
+    background-color: rgb(226, 225, 225);
     flex: 1;
 }
 .hero .sante {
     display: flex;
     color: rgb(148, 0, 0);
 }
-.hero .topbar {
+.topbar {
     display: flex;
     justify-content: space-around;
     padding: 5px;
 }
 
-.hero .stats {
+.stats {
     display: flex;
 }
 .hero .titre {
@@ -67,7 +67,7 @@ background-color: gold;
     flex-direction: column;
     padding: 2px;
 }
-.hero .de {
+.de {
     height:30px;
     width:30px;
     margin: 2px;
@@ -80,4 +80,13 @@ background-color: gold;
 }
 .hero .magie .de {
     background-color: navy;
+}
+.monstre .force.de {
+    background-color: rgb(204, 178, 151);
+}
+.monstre .agilite.de {
+    background-color: rgb(126, 170, 146);
+}
+.monstre .magie.de {
+    background-color: rgb(100, 100, 129);
 }
