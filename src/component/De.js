@@ -4,23 +4,17 @@ import ItemTypes from '../utils/ItemTypes'
 
 class De extends React.Component{
 
-    isSelectedDice(){
-        if(this.props.de.type===this.props.selectedDice.type && this.props.de.index===this.props.selectedDice.index){
-            return true;
-        }
-        return false;
-    }
+    // isSelectedDice(){
+    //     if(this.props.de.index===this.props.selectedDice.index){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     render(){
-        // const [{ isDragging }, drag] = useDrag({
-        //     item: { type: ItemTypes.DE },
-        //     collect: monitor => ({
-        //       isDragging: !!monitor.isDragging(),
-        //     }),
-        //   })
         return(
             <div 
-                className={"de " + (this.isSelectedDice()?"focus":"")} 
+                className={"de "} 
                 onClick = {this.props.onClick}
                 >
             </div>
