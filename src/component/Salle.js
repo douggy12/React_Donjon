@@ -1,5 +1,9 @@
 import React from 'react';
 import Utils from '../utils/Utils';
+import De from './De';
+import DeCible from './DeCible';
+import { DndProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 
 class Salle extends React.Component {
@@ -12,20 +16,20 @@ class Salle extends React.Component {
             monstre: {
                 nom: "Rat affamé",
                 stats: [
-                    {type:"force",nb: 2,isFill:false},
-                    {type:"force",nb:3,isFill:false},
-                    {type:"agilite",nb:2,isFill:false}
+                    { type: "force", nb: 2, isFill: false },
+                    { type: "force", nb: 3, isFill: false },
+                    { type: "agilite", nb: 2, isFill: false }
                 ]
             },
-            selectedDice: {type:null,index:null},
+            selectedDice: { type: null, index: null },
         }
     }
 
-    getStockDe(stats){
+    getStockDe(stats) {
         return {
-            force: Array(stats.force).fill({value:null,isDispo:true}),
-            agilite: Array(stats.agilite).fill({value:null,isDispo:true}),
-            magie: Array(stats.magie).fill({value:null,isDispo:true}),
+            force: Array(stats.force).fill({ value: null, isDispo: true }),
+            agilite: Array(stats.agilite).fill({ value: null, isDispo: true }),
+            magie: Array(stats.magie).fill({ value: null, isDispo: true }),
         }
     }
 
@@ -42,19 +46,25 @@ class Salle extends React.Component {
         return barreSante;
     }
 
-    isSelectedDice(type,index){
-        if(type===this.state.selectedDice.type && index===this.state.selectedDice.index){
-            return true;
-        }
-        return false;
-    }
+
     renderStockDes(listDe, type) {
-        return listDe.map((de,index)=><div key={index} className={"de " + (this.isSelectedDice(type,index)?"focus":"")} onClick={()=>this.setState({selectedDice: {type:type,index:index}})}></div>);
+        return listDe.map((de, index) => <De
+            key={index}
+            onClick={() => this.setState({ selectedDice: { type: type, index: index } })}
+            de={{ stat: de, type: type, index: index }}
+            selectedDice={this.state.selectedDice}
+        />);
+    }
+    fillDice() {
+
     }
 
-    renderMonstrestats(stat,index){
-        return(
-            <div key={index} className={stat.type + " de" + (stat.isFill?" fill":" empty")}></div>
+    renderMonstrestats(stat, index) {
+        return (
+           <DeCible 
+                cible={{stat:stat,index:index}}
+                selectedDice={this.state.selectedDice}
+                key={index} />
         );
     }
 
@@ -64,37 +74,39 @@ class Salle extends React.Component {
             <div className="salle">
 
                 <div>Combattre le Monstre</div>
-                <div className="combat">
-                    <div className="hero">
-                        <div className="topbar">
-                            <div className="nom">{this.state.hero.name}</div>
-                            <div className="sante">{this.renderSante()}</div>
-                        </div>
-                        <div className="stats">
-                            <div className="force">
-                                <div className="titre">Force</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.force, "force")}</div>
+                <DndProvider backend={HTML5Backend}>
+                    <div className="combat">
+                        <div className="hero">
+                            <div className="topbar">
+                                <div className="nom">{this.state.hero.name}</div>
+                                <div className="sante">{this.renderSante()}</div>
                             </div>
-                            <div className="agilite">
-                                <div className="titre">Agilite</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.agilite, "agilite")}</div>
+                            <div className="stats">
+                                <div className="force">
+                                    <div className="titre">Force</div>
+                                    <div className="stock-des">{this.renderStockDes(this.state.stockDe.force, "force")}</div>
+                                </div>
+                                <div className="agilite">
+                                    <div className="titre">Agilite</div>
+                                    <div className="stock-des">{this.renderStockDes(this.state.stockDe.agilite, "agilite")}</div>
+                                </div>
+                                <div className="magie">
+                                    <div className="titre">Magie</div>
+                                    <div className="stock-des">{this.renderStockDes(this.state.stockDe.magie, "magie")}</div>
+                                </div>
                             </div>
-                            <div className="magie">
-                                <div className="titre">Magie</div>
-                                <div className="stock-des">{this.renderStockDes(this.state.stockDe.magie, "magie")}</div>
+                        </div>
+                        <div className="monstre">
+                            <div className="topbar">
+                                <div className="nom">{this.state.monstre.nom}</div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="monstre">
-                        <div className="topbar">
-                            <div className="nom">{this.state.monstre.nom}</div>
-                        </div>
-                        <div className="stats">
-                            {this.state.monstre.stats.map((stat,index)=> this.renderMonstrestats(stat,index))}                      
-                        </div>
+                            <div className="stats">
+                                {this.state.monstre.stats.map((stat, index) => this.renderMonstrestats(stat, index))}
+                            </div>
 
+                        </div>
                     </div>
-                </div>
+                </DndProvider>
                 <button onClick={() => this.gagner()}>Gagné</button>
                 <button onClick={() => this.props.move("Mort", this.props.donjon)}>Perdu</button>
             </div>
