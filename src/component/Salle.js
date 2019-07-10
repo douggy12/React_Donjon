@@ -49,7 +49,7 @@ class Salle extends React.Component {
 
     renderStockDes(listDe, type) {
         return listDe.map((de, index) => <De
-            key={index}
+            key={index} 
             onClick={() => this.setState({ selectedDice: { type: type, index: index } })}
             de={{ stat: de, type: type, index: index }}
             selectedDice={this.state.selectedDice}
@@ -58,12 +58,26 @@ class Salle extends React.Component {
     fillDice() {
 
     }
+    onDrop=(item,target)=>{
+        console.log(item);
+        let stockDe = this.state.stockDe;
+        console.log(target);
+        let monstre = this.state.monstre;
+        monstre.stats[target.index].isFill = true;
+        stockDe[item.type].splice([item.id],1);
+        this.setState({
+          stockDe: stockDe,
+            monstre:monstre
+        })
+      }
 
     renderMonstrestats(stat, index) {
         return (
            <DeCible 
                 cible={{stat:stat,index:index}}
                 selectedDice={this.state.selectedDice}
+                droppedItem={this.state.droppedItem} 
+                onDrop={this.onDrop}
                 key={index} />
         );
     }

@@ -67,7 +67,7 @@ background-color: gold;
     flex-direction: column;
     padding: 2px;
 }
-.de {
+.de,.cible {
     height:30px;
     width:30px;
     margin: 2px;
@@ -75,24 +75,25 @@ background-color: gold;
 .de.focus {
     border: 1px solid white;
 }
-.de.possible{
-    border: 2px solid greenyellow;
-}
-.hero .force .de {
+
+.force .de,.force.cible.fill {
     background-color: peru;
 }
-.hero .agilite .de {
+.agilite .de,.agilite.cible.fill {
     background-color: mediumseagreen;
 }
-.hero .magie .de {
+.magie .de,.magie.cible.fill {
     background-color: navy;
 }
-.monstre .force.de {
+.force.cible {
     background-color: rgb(204, 178, 151);
 }
-.monstre .agilite.de {
+.agilite.cible {
     background-color: rgb(126, 170, 146);
 }
-.monstre .magie.de {
+.magie.cible {
     background-color: rgb(100, 100, 129);
+}
+.cible.possible{
+    border: 2px solid greenyellow;
 }
