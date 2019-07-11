@@ -4,27 +4,20 @@ import ItemTypes from '../utils/ItemTypes'
 
 class De extends React.Component{
 
-    // isSelectedDice(){
-    //     if(this.props.de.index===this.props.selectedDice.index){
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     render(){
         const { name, connectDragSource } = this.props;
         return connectDragSource(
             <div 
                 className={"de "} 
                 onClick = {this.props.onClick}
-                >
+                >{this.props.de.stat.value}
             </div>
         );
     }
 }
 const cardSource = {
     beginDrag(props, monitor, component) {
-        const de = { id: props.de.index, type:props.de.type, stat:props.de.value };
+        const de = { id: props.de.index, type:props.de.type, stat:props.de.stat };
         return de;
     }
 };

@@ -22,7 +22,20 @@ class Salle extends React.Component {
                 ]
             },
             selectedDice: { type: null, index: null },
+            isDicesRolled:false,
         }
+    }
+    rollDices(){
+        let stockDeForce = this.state.stockDe.force.map((type)=>{          
+            return{value: Utils.getRandomInt(6),isDispo:true};            
+        });
+        let stockDeAgilite = this.state.stockDe.agilite.map((type)=>{          
+            return{value: Utils.getRandomInt(6),isDispo:true};            
+        });
+        let stockDeMagie = this.state.stockDe.magie.map((type)=>{          
+            return{value: Utils.getRandomInt(6),isDispo:true};            
+        });
+        this.setState({stockDe:{force:stockDeForce,agilite:stockDeAgilite,magie:stockDeMagie}});
     }
 
     getStockDe(stats) {
@@ -33,9 +46,20 @@ class Salle extends React.Component {
         }
     }
 
+    isGagne(){
+        let gagne = true;
+        this.state.monstre.stats.forEach((stat)=>{
+            if(!stat.isFill){
+                gagne = false;
+            }
+        })
+        
+        return gagne;
+    }
+
     gagner() {
         Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
-        return this.props.move("Donjon", this.props.donjon);
+        return this.props.move("Donjon", this.props.donjon, this.props.hero);
     }
 
     renderSante() {
@@ -59,9 +83,9 @@ class Salle extends React.Component {
 
     }
     onDrop=(item,target)=>{
-        console.log(item);
+        
         let stockDe = this.state.stockDe;
-        console.log(target);
+        
         let monstre = this.state.monstre;
         monstre.stats[target.index].isFill = true;
         stockDe[item.type].splice([item.id],1);
@@ -121,8 +145,12 @@ class Salle extends React.Component {
                         </div>
                     </div>
                 </DndProvider>
-                <button onClick={() => this.gagner()}>Gagné</button>
-                <button onClick={() => this.props.move("Mort", this.props.donjon)}>Perdu</button>
+                <button onClick={() => this.rollDices()}>Roll The Dice !</button>
+                <div>
+                    {this.isGagne() && <button onClick={() => this.gagner()}>Gagné</button>}
+                    <button onClick={() => this.props.move("Mort", this.props.donjon)}>Perdu</button>
+                </div>
+                
             </div>
         );
     }

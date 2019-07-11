@@ -28,7 +28,7 @@ const spec = {
     canDrop(props, monitor){
         const target = props.cible;
         const item = monitor.getItem();
-        if(item.type === target.stat.type && !target.stat.isFill){
+        if(item.type === target.stat.type && !target.stat.isFill && item.stat.value >= target.stat.nb){
             return true;
         }
         return false;
