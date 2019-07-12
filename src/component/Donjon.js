@@ -1,5 +1,7 @@
 import React from 'react';
 import Utils from '../utils/Utils';
+import Bat from '../asset/bat.png';
+import Skull from  '../asset/skull.png';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -53,24 +55,24 @@ class Donjon extends React.Component {
         const etage = portes.map((porte, index) => {
             if (porte.status === "open") {
 
-                return <button key={index} className="door open" onClick={() => {
+                return <div key={index} className="door open" onClick={() => {
                     this.rentrer(index);
-                }}>Monstre</button>
+                }}><img src={Bat} alt='bat' className="door-monster" /></div>
             } else if (porte.status === "close") {
 
                 return (
-                    <button key={index} className="door close" onClick={() => {
+                    <div key={index} className="door close" onClick={() => {
                         this.ouvrirPorte(index);
                     }
                     }>
 
-                    </button>
+                    </div>
                 );
             } else if (porte.status === "defeat") {
                 return (
-                    <div key={index} className="door defeat">
-                        X
-                </div>
+                    <div key={index} className="door open">
+                        <img src={Skull} alt='skull' className="door-skull" />
+                    </div>
                 );
             } else if(porte.status === "boss"){
                 return(

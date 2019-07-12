@@ -148,7 +148,7 @@ class Salle extends React.Component {
                 <button onClick={() => this.rollDices()}>Roll The Dice !</button>
                 <div>
                     {this.isGagne() && <button onClick={() => this.gagner()}>Gagné</button>}
-                    <button onClick={() => this.props.move("Mort", this.props.donjon)}>Perdu</button>
+                    <button onClick={() => this.props.move("Mort", this.state.donjon,this.state.hero)}>Perdu</button>
                 </div>
                 
             </div>
