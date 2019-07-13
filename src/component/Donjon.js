@@ -26,6 +26,7 @@ class Donjon extends React.Component {
     explorer() {
         let donjon = this.state.donjon;
         Utils.last(donjon.etages).couloirs.push(donjon.getEmptyHall(4));
+        donjon.temps += 4;
         this.setState({ donjon: donjon });
 
     }
@@ -46,6 +47,7 @@ class Donjon extends React.Component {
             donjon.etages.push({
                 couloirs: [donjon.getEmptyHall(4)]
             });
+            donjon.resetTemps();
         }
         this.setState({
             donjon: donjon
@@ -89,7 +91,7 @@ class Donjon extends React.Component {
     }
 
     render() {
-        const temps = (Utils.last(this.state.donjon.etages).couloirs.length - 1) * 4;
+        const temps = this.state.donjon.temps;
         const etageIsExplored = temps === 24;
         const etage = this.renderEtage(Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes)
 
