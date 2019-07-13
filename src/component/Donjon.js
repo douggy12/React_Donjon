@@ -2,7 +2,7 @@ import React from 'react';
 import Utils from '../utils/Utils';
 import Bat from '../asset/bat.png';
 import Skull from '../asset/skull.png';
-import Hourglass from '../asset/hourglass.png';
+import Temps from './Temps';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -101,9 +101,7 @@ class Donjon extends React.Component {
                         <h2>Etage -{this.state.donjon.etages.length}</h2>
                     </div>
                     <div className="box">
-                        <div className="temps">
-                            <img className="hourglass" src={Hourglass} alt="hourglass" /> {temps}/24
-                        </div>
+                        <Temps temps={temps}/>
                     </div>
                 </div>
                 <div className="etage">
