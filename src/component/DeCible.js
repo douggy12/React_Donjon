@@ -57,8 +57,14 @@ const spec = {
     canDrop(props, monitor) {
         const target = props.cible;
         const item = monitor.getItem();
-        if (item.type === target.stat.type && target.stat.value !== 0 && (item.stat.value >= target.stat.value || target.stat.multi)) {
-            return true;
+        if (item.type === target.stat.type 
+            && target.stat.value !== 0 
+            && (item.stat.value >= target.stat.value || target.stat.multi) 
+            ) {
+                if(props.requiredDone || props.cible.stat.required){
+                    return true;
+                }
+            
         }
         return false;
 

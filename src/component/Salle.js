@@ -20,7 +20,8 @@ class Salle extends React.Component {
                     { type: "force", value : 2, multi:false,required:true,damages:[]},
                     { type: "force",  value: 3, multi:false,damages:[1,1] },
                     { type: "agilite", value: 2, multi:true,damages:[null,1] }
-                ]
+                ],
+                requiredDone:false,
             },
             selectedDice: { type: null, index: null },
             isDicesRolled: false,
@@ -83,10 +84,20 @@ class Salle extends React.Component {
     fillDice() {
 
     }
+    isRequiredDone(monstre){
+        const requArray = monstre.stats.filter(stat => stat.required);
+        let result = requArray.every((stat)=>{
+            if(stat.value > 0){    
+                return false;
+            }
+            return true;      
+        })
+        return result;
+    }
     onDrop = (item, target) => {
 
         let stockDe = this.state.stockDe;
-
+        
         let monstre = this.state.monstre;
         if(item.stat.value >= target.stat.value){
             monstre.stats[target.index].value=0;
@@ -94,7 +105,11 @@ class Salle extends React.Component {
             let result = target.stat.value - item.stat.value;
             monstre.stats[target.index].value = result < 0 ? 0:result;
         }
+        if (this.isRequiredDone(monstre)){
+            monstre.requiredDone = true;
+        }
         stockDe[item.type].splice([item.id], 1);
+       
         this.setState({
             stockDe: stockDe,
             monstre: monstre
@@ -105,7 +120,7 @@ class Salle extends React.Component {
         return (
             <DeCible
                 cible={{ stat: stat, index: index }}
-                selectedDice={this.state.selectedDice}
+                requiredDone={this.state.monstre.requiredDone}
                 droppedItem={this.state.droppedItem}
                 onDrop={this.onDrop}
                 key={index} />
