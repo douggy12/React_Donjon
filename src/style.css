@@ -159,3 +159,6 @@ background-repeat: no-repeat;
 .cible.possible{
     border: 2px solid greenyellow;
 }
+.cible.multi{
+    width:120px;
+}

@@ -1,10 +1,9 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
-import De from './De';
 
 class DeCible extends React.Component {
     isPossible() {
-        if (!this.props.cible.stat.isFill) {
+        if (!this.props.cible.stat.value === 0) {
             return true;
         }
         return false;
@@ -13,9 +12,9 @@ class DeCible extends React.Component {
         const { isOver, canDrop, connectDropTarget, droppedItem } = this.props;
         return connectDropTarget(
              <div
-                className={this.props.cible.stat.type + " cible" + (this.props.cible.stat.isFill ? " fill" : " empty" ) + (canDrop? " possible":"" )}
+                className={this.props.cible.stat.type + " cible" + (this.props.cible.stat.value === 0 ? " fill" : " empty" ) + (canDrop? " possible":"" ) + (this.props.cible.stat.multi ? " multi":"")}
                 
-            >{this.props.cible.stat.nb}</div>
+            >{this.props.cible.stat.value}</div>
         );
     }
 }
@@ -28,7 +27,7 @@ const spec = {
     canDrop(props, monitor){
         const target = props.cible;
         const item = monitor.getItem();
-        if(item.type === target.stat.type && !target.stat.isFill && item.stat.value >= target.stat.nb){
+        if(item.type === target.stat.type && target.stat.value !== 0 && (item.stat.value >= target.stat.value || target.stat.multi)){
             return true;
         }
         return false;

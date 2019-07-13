@@ -17,9 +17,9 @@ class Salle extends React.Component {
             monstre: {
                 nom: "Rat affamé",
                 stats: [
-                    { type: "force", nb: 2, isFill: false,multi:false,required:true},
-                    { type: "force", nb: 3, isFill: false,multi:false,damages:[1,1] },
-                    { type: "agilite", nb: 2, isFill: false,multi:true,damages:[null,1] }
+                    { type: "force", value : 2, multi:false,required:true},
+                    { type: "force",  value: 3, multi:false,damages:[1,1] },
+                    { type: "agilite", value: 2, multi:true,damages:[null,1] }
                 ]
             },
             selectedDice: { type: null, index: null },
@@ -50,7 +50,7 @@ class Salle extends React.Component {
     isGagne() {
         let gagne = true;
         this.state.monstre.stats.forEach((stat) => {
-            if (!stat.isFill) {
+            if (stat.value > 0) {
                 gagne = false;
             }
         })
@@ -88,7 +88,12 @@ class Salle extends React.Component {
         let stockDe = this.state.stockDe;
 
         let monstre = this.state.monstre;
-        monstre.stats[target.index].isFill = true;
+        if(item.stat.value >= target.stat.value){
+            monstre.stats[target.index].value=0;
+        }else if (target.stat.multi){
+            let result = target.stat.value - item.stat.value;
+            monstre.stats[target.index].value = result < 0 ? 0:result;
+        }
         stockDe[item.type].splice([item.id], 1);
         this.setState({
             stockDe: stockDe,
