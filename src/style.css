@@ -4,6 +4,7 @@
 }
 img {
     image-rendering: pixelated;
+    vertical-align: middle;
 }
 .game {
     background-image: url('./asset/wall_1.png');
@@ -22,17 +23,17 @@ img {
   .box {
     background-color: #523a42;
     border: 10px solid #1c1117;
-    box-shadow: 3px 3px 3px black;
-    width: 200px;
-    text-align: center;
+    /* box-shadow: 3px 3px 3px black; */
     margin: 25px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
   }
   .temps{
       font-size: 22 px;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      height: 100%;
+      
   }
   .hourglass {
       width: 50px;
@@ -41,13 +42,17 @@ img {
   .topbar {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 5px;
       /* flex-direction: column; */
   }
+
   
 .etage {
 display: flex;
 flex-wrap: wrap;
 align-items: center;
+justify-content: space-around;
 }
 .door{
     width: 256px;
@@ -111,11 +116,7 @@ background-repeat: no-repeat;
     display: flex;
     color: rgb(148, 0, 0);
 }
-.topbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-}
+
 
 .stats {
     display: flex;
@@ -129,8 +130,8 @@ background-repeat: no-repeat;
     padding: 2px;
 }
 .de,.cible {
-    height:30px;
-    width:30px;
+    height:60px;
+    width:60px;
     margin: 2px;
 }
 .de.focus {

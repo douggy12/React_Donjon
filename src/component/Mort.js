@@ -15,7 +15,9 @@ class Mort extends React.Component {
     render() {
             return (
                 <div className="mort">
+                    <div className="box">
                     Vous êtes mort dans d'atroces souffrances !
+                    </div>
                 <button onClick={() => this.recommencer()}>Recommencer !</button>
                 </div>
             );        
