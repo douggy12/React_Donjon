@@ -4,6 +4,7 @@ import De from './De';
 import DeCible from './DeCible';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Temps from './Temps';
 
 
 class Salle extends React.Component {
@@ -16,26 +17,26 @@ class Salle extends React.Component {
             monstre: {
                 nom: "Rat affamé",
                 stats: [
-                    { type: "force", nb: 2, isFill: false },
-                    { type: "force", nb: 3, isFill: false },
-                    { type: "agilite", nb: 2, isFill: false }
+                    { type: "force", nb: 2, isFill: false,multi:false,required:true},
+                    { type: "force", nb: 3, isFill: false,multi:false,damages:[1,1] },
+                    { type: "agilite", nb: 2, isFill: false,multi:true,damages:[null,1] }
                 ]
             },
             selectedDice: { type: null, index: null },
-            isDicesRolled:false,
+            isDicesRolled: false,
         }
     }
-    rollDices(){
-        let stockDeForce = this.state.stockDe.force.map((type)=>{          
-            return{value: Utils.getRandomInt(6),isDispo:true};            
+    rollDices() {
+        let stockDeForce = this.state.stockDe.force.map((type) => {
+            return { value: Utils.getRandomInt(6), isDispo: true };
         });
-        let stockDeAgilite = this.state.stockDe.agilite.map((type)=>{          
-            return{value: Utils.getRandomInt(6),isDispo:true};            
+        let stockDeAgilite = this.state.stockDe.agilite.map((type) => {
+            return { value: Utils.getRandomInt(6), isDispo: true };
         });
-        let stockDeMagie = this.state.stockDe.magie.map((type)=>{          
-            return{value: Utils.getRandomInt(6),isDispo:true};            
+        let stockDeMagie = this.state.stockDe.magie.map((type) => {
+            return { value: Utils.getRandomInt(6), isDispo: true };
         });
-        this.setState({stockDe:{force:stockDeForce,agilite:stockDeAgilite,magie:stockDeMagie}});
+        this.setState({ stockDe: { force: stockDeForce, agilite: stockDeAgilite, magie: stockDeMagie } });
     }
 
     getStockDe(stats) {
@@ -46,14 +47,14 @@ class Salle extends React.Component {
         }
     }
 
-    isGagne(){
+    isGagne() {
         let gagne = true;
-        this.state.monstre.stats.forEach((stat)=>{
-            if(!stat.isFill){
+        this.state.monstre.stats.forEach((stat) => {
+            if (!stat.isFill) {
                 gagne = false;
             }
         })
-        
+
         return gagne;
     }
 
@@ -73,7 +74,7 @@ class Salle extends React.Component {
 
     renderStockDes(listDe, type) {
         return listDe.map((de, index) => <De
-            key={index} 
+            key={index}
             onClick={() => this.setState({ selectedDice: { type: type, index: index } })}
             de={{ stat: de, type: type, index: index }}
             selectedDice={this.state.selectedDice}
@@ -82,25 +83,25 @@ class Salle extends React.Component {
     fillDice() {
 
     }
-    onDrop=(item,target)=>{
-        
+    onDrop = (item, target) => {
+
         let stockDe = this.state.stockDe;
-        
+
         let monstre = this.state.monstre;
         monstre.stats[target.index].isFill = true;
-        stockDe[item.type].splice([item.id],1);
+        stockDe[item.type].splice([item.id], 1);
         this.setState({
-          stockDe: stockDe,
-            monstre:monstre
+            stockDe: stockDe,
+            monstre: monstre
         })
-      }
+    }
 
     renderMonstrestats(stat, index) {
         return (
-           <DeCible 
-                cible={{stat:stat,index:index}}
+            <DeCible
+                cible={{ stat: stat, index: index }}
                 selectedDice={this.state.selectedDice}
-                droppedItem={this.state.droppedItem} 
+                droppedItem={this.state.droppedItem}
                 onDrop={this.onDrop}
                 key={index} />
         );
@@ -110,8 +111,12 @@ class Salle extends React.Component {
 
         return (
             <div className="salle">
-
-                <div>Combattre le Monstre</div>
+                <div className="topbar">
+                    <div className="box">Combattre le Monstre</div>
+                    <div className="box">
+                        <Temps temps={this.state.donjon.temps} />
+                    </div>
+                </div>
                 <DndProvider backend={HTML5Backend}>
                     <div className="combat">
                         <div className="hero">
@@ -148,9 +153,9 @@ class Salle extends React.Component {
                 <button onClick={() => this.rollDices()}>Roll The Dice !</button>
                 <div>
                     {this.isGagne() && <button onClick={() => this.gagner()}>Gagné</button>}
-                    <button onClick={() => this.props.move("Mort", this.state.donjon,this.state.hero)}>Perdu</button>
+                    <button onClick={() => this.props.move("Mort", this.state.donjon, this.state.hero)}>Perdu</button>
                 </div>
-                
+
             </div>
         );
     }
