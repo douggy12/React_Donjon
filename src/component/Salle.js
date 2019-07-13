@@ -17,7 +17,7 @@ class Salle extends React.Component {
             monstre: {
                 nom: "Rat affamé",
                 stats: [
-                    { type: "force", value : 2, multi:false,required:true},
+                    { type: "force", value : 2, multi:false,required:true,damages:[]},
                     { type: "force",  value: 3, multi:false,damages:[1,1] },
                     { type: "agilite", value: 2, multi:true,damages:[null,1] }
                 ]
