@@ -1,7 +1,8 @@
 import React from 'react';
 import Utils from '../utils/Utils';
 import Bat from '../asset/bat.png';
-import Skull from  '../asset/skull.png';
+import Skull from '../asset/skull.png';
+import Hourglass from '../asset/hourglass.png';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Donjon extends React.Component {
     rentrer(index) {
         let donjon = this.props.donjon;
         Utils.last(Utils.last(donjon.etages).couloirs).portes[index].status = "fight"
-        this.props.move("Salle", this.props.donjon,this.props.hero);
+        this.props.move("Salle", this.props.donjon, this.props.hero);
     }
 
     descendre() {
@@ -40,7 +41,7 @@ class Donjon extends React.Component {
         if (donjon.etages.length === donjon.boss.etage) {
             donjon.isExplored = true;
             donjon.etages.push({ couloirs: [{ portes: [{ status: "boss" }] }] });
-            
+
         } else {
             donjon.etages.push({
                 couloirs: [donjon.getEmptyHall(4)]
@@ -74,13 +75,13 @@ class Donjon extends React.Component {
                         <img src={Skull} alt='skull' className="door-skull" />
                     </div>
                 );
-            } else if(porte.status === "boss"){
-                return(
-                <button key={index} className="door boss" onClick={() => {
-                    this.rentrer(index);
-                }}>Boss</button>
+            } else if (porte.status === "boss") {
+                return (
+                    <button key={index} className="door boss" onClick={() => {
+                        this.rentrer(index);
+                    }}>Boss</button>
                 );
-            }else {
+            } else {
                 return null;
             }
         });
@@ -95,9 +96,15 @@ class Donjon extends React.Component {
 
         return (
             <div className='donjon'>
-                <h2>Etage -{this.state.donjon.etages.length}</h2>
-                <div className="temps">
-                    {temps}/24
+                <div className="topbar">
+                    <div className="box">
+                        <h2>Etage -{this.state.donjon.etages.length}</h2>
+                    </div>
+                    <div className="box">
+                        <div className="temps">
+                            <img className="hourglass" src={Hourglass} alt="hourglass" /> {temps}/24
+                        </div>
+                    </div>
                 </div>
                 <div className="etage">
                     {etage}
