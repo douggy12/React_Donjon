@@ -5,6 +5,7 @@ import DeCible from './DeCible';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Temps from './Temps';
+import HealthBar from './HealthBar';
 
 
 class Salle extends React.Component {
@@ -64,15 +65,17 @@ class Salle extends React.Component {
         return this.props.move("Donjon", this.state.donjon, this.state.hero);
     }
     perdre() {
-        if(this.state.hero.sante <1){
-            this.props.move("Mort", this.state.donjon, this.state.hero);
-        } else {
+        
+        if(this.state.hero.sante > 0) {
             let donjon = this.state.donjon;
             this.calculateDamage();
 
             Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'open';
             this.setState({donjon:donjon});
             this.props.move("Donjon", this.state.donjon, this.state.hero);
+        }
+        if(this.state.hero.sante < 1){
+                this.props.move("Mort", this.state.donjon, this.state.hero);
         }
         
     }
@@ -83,7 +86,7 @@ class Salle extends React.Component {
         this.state.monstre.stats.forEach((stat)=>{
             if(stat.value > 0){
                 if(stat.damages.length > 0){
-                    hero.sante -= stat.damages[0];
+                    hero.damage += stat.damages[0];
                     donjon.temps += stat.damages[1];
                 }
                
@@ -91,15 +94,6 @@ class Salle extends React.Component {
         });
         this.setState({hero:hero,donjon:donjon});
     }
-
-    renderSante() {
-        let barreSante = [];
-        for (let i = 0; i < this.state.hero.sante; i++) {
-            barreSante.push(<div key={i}>❤</div>);
-        }
-        return barreSante;
-    }
-
 
     renderStockDes(listDe, type) {
         return listDe.map((de, index) => <De
@@ -168,7 +162,7 @@ class Salle extends React.Component {
                         <div className="hero">
                             <div className="topbar">
                                 <div className="nom">{this.state.hero.name}</div>
-                                <div className="sante">{this.renderSante()}</div>
+                                <div className="sante"><HealthBar full={this.state.hero.sante} empty={this.state.hero.damage} /></div>
                             </div>
                             <div className="stats">
                                 <div className="force">

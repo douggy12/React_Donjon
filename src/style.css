@@ -179,3 +179,7 @@ background-repeat: no-repeat;
     height: 15px;
     vertical-align: baseline;
 }
+.healthbar>img{
+    margin:2px;
+    width : 20px;
+}
