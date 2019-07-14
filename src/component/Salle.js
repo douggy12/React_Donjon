@@ -61,7 +61,35 @@ class Salle extends React.Component {
 
     gagner() {
         Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
-        return this.props.move("Donjon", this.props.donjon, this.props.hero);
+        return this.props.move("Donjon", this.state.donjon, this.state.hero);
+    }
+    perdre() {
+        if(this.state.hero.sante <1){
+            this.props.move("Mort", this.state.donjon, this.state.hero);
+        } else {
+            let donjon = this.state.donjon;
+            this.calculateDamage();
+
+            Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'open';
+            this.setState({donjon:donjon});
+            this.props.move("Donjon", this.state.donjon, this.state.hero);
+        }
+        
+    }
+
+    calculateDamage(){
+        let hero = this.state.hero;
+        let donjon = this.state.donjon;
+        this.state.monstre.stats.forEach((stat)=>{
+            if(stat.value > 0){
+                if(stat.damages.length > 0){
+                    hero.sante -= stat.damages[0];
+                    donjon.temps += stat.damages[1];
+                }
+               
+            }
+        });
+        this.setState({hero:hero,donjon:donjon});
     }
 
     renderSante() {
@@ -81,9 +109,7 @@ class Salle extends React.Component {
             selectedDice={this.state.selectedDice}
         />);
     }
-    fillDice() {
 
-    }
     isRequiredDone(monstre){
         const requArray = monstre.stats.filter(stat => stat.required);
         let result = requArray.every((stat)=>{
@@ -173,7 +199,7 @@ class Salle extends React.Component {
                 <button onClick={() => this.rollDices()}>Roll The Dice !</button>
                 <div>
                     {this.isGagne() && <button onClick={() => this.gagner()}>Gagné</button>}
-                    <button onClick={() => this.props.move("Mort", this.state.donjon, this.state.hero)}>Perdu</button>
+                    <button onClick={() => this.perdre()}>Perdu</button>
                 </div>
 
             </div>
