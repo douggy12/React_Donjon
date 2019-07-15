@@ -5,7 +5,7 @@ import DeCible from './DeCible';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Temps from './Temps';
-import HealthBar from './HealthBar';
+import Hero from './Hero';
 
 
 class Salle extends React.Component {
@@ -160,10 +160,7 @@ class Salle extends React.Component {
                 <DndProvider backend={HTML5Backend}>
                     <div className="combat">
                         <div className="hero">
-                            <div className="topbar">
-                                <div className="nom">{this.state.hero.name}</div>
-                                <div className="sante"><HealthBar full={this.state.hero.sante} empty={this.state.hero.damage} /></div>
-                            </div>
+                            <Hero hero={this.state.hero} />
                             <div className="stats">
                                 <div className="force">
                                     <div className="titre">Force</div>
