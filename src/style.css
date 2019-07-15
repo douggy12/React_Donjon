@@ -105,8 +105,16 @@ background-repeat: no-repeat;
 }
 .hero {
     background-color: rgb(217, 242, 243);
-    flex: 1;
+    flex:1;
+    display: flex;
+    justify-content: space-evenly;
 
+}
+.hero_detail{
+    width: 50%;
+}
+.hero_detail .portrait>img{
+    width: 60%;
 }
 .monstre {
     background-color: rgb(226, 225, 225);
