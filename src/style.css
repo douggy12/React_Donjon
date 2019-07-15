@@ -1,20 +1,76 @@
+@font-face{
+    font-family: 'pixeled';
+    src: url('./asset/04b03.woff2');
+}
+img {
+    image-rendering: pixelated;
+    vertical-align: middle;
+}
+.game {
+    background-image: url('./asset/wall_1.png');
+    position:fixed;
+    padding:0;
+    margin:0;
 
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 100%;
+
+    font-family: 'pixeled',Lato,LatoExtended,sans-serif;
+  }
+  .box {
+    background-color: #523a42;
+    border: 8px solid #1c1117;
+    /* box-shadow: 3px 3px 3px black; */
+    margin: 25px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+  }
+  .box>.temps{
+      font-size: 22 px;
+      
+  }
+  .hourglass {
+      width: 50px;
+        
+  }
+  .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 5px;
+      /* flex-direction: column; */
+  }
+
+  
 .etage {
 display: flex;
 flex-wrap: wrap;
 align-items: center;
+justify-content: space-around;
 }
 .door{
-    width: 300px;
-    height: 150px;
+    width: 256px;
+    height: 241px;
     margin: 4px;
+    filter: drop-shadow(3px 3px 3px black);
 }
 .door.close{
-background-color: dimgray;
+    background-image: url('./asset/door_1.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    
 }
 
 .door.open {
-background-color: gold;
+background-image: url('./asset/door_1_open.png');
+background-repeat: no-repeat;
+    background-size: auto;
 }
 .door.defeat {
     background-color: black;
@@ -30,6 +86,16 @@ background-color: gold;
     text-align: center;
     line-height: 100%
 }
+.door-monster{
+    transform: translate(10px,8px);
+}
+.door-skull {
+    width:40px;
+    image-rendering: pixelated;
+    position: relative;
+    top: 201px;
+    left: 120px;
+}
 .salle {
     
 }
@@ -43,20 +109,16 @@ background-color: gold;
 
 }
 .monstre {
-    background-color: antiquewhite;
+    background-color: rgb(226, 225, 225);
     flex: 1;
 }
 .hero .sante {
     display: flex;
     color: rgb(148, 0, 0);
 }
-.hero .topbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-}
 
-.hero .stats {
+
+.stats {
     display: flex;
 }
 .hero .titre {
@@ -67,17 +129,57 @@ background-color: gold;
     flex-direction: column;
     padding: 2px;
 }
-.hero .de {
-    height:30px;
-    width:30px;
+.de,.cible {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height:60px;
+    width:60px;
     margin: 2px;
+    font-size: 30px;
+    padding: 3px;
 }
-.hero .force .de {
+.de.focus {
+    border: 1px solid white;
+}
+
+.force .de,.force.cible.fill {
     background-color: peru;
 }
-.hero .agilite .de {
+.agilite .de,.agilite.cible.fill {
     background-color: mediumseagreen;
 }
-.hero .magie .de {
+.magie .de,.magie.cible.fill {
     background-color: navy;
+}
+.force.cible {
+    background-color: rgb(204, 178, 151);
+}
+.agilite.cible {
+    background-color: rgb(126, 170, 146);
+}
+.magie.cible {
+    background-color: rgb(100, 100, 129);
+}
+.cible.possible{
+    border: 2px solid greenyellow;
+}
+.cible.multi{
+    width:120px;
+}
+.damages{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 20px;
+    justify-content: right;
+}
+.damage>img{
+    width:15px;
+    height: 15px;
+    vertical-align: baseline;
+}
+.healthbar>img{
+    margin:2px;
+    width : 20px;
 }

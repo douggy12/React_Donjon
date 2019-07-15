@@ -1,5 +1,8 @@
 import React from 'react';
 import Utils from '../utils/Utils';
+import Bat from '../asset/bat.png';
+import Skull from '../asset/skull.png';
+import Temps from './Temps';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -23,6 +26,7 @@ class Donjon extends React.Component {
     explorer() {
         let donjon = this.state.donjon;
         Utils.last(donjon.etages).couloirs.push(donjon.getEmptyHall(4));
+        donjon.temps += 4;
         this.setState({ donjon: donjon });
 
     }
@@ -30,7 +34,7 @@ class Donjon extends React.Component {
     rentrer(index) {
         let donjon = this.props.donjon;
         Utils.last(Utils.last(donjon.etages).couloirs).portes[index].status = "fight"
-        this.props.move("Salle", this.props.donjon,this.props.hero);
+        this.props.move("Salle", this.props.donjon, this.props.hero);
     }
 
     descendre() {
@@ -38,11 +42,12 @@ class Donjon extends React.Component {
         if (donjon.etages.length === donjon.boss.etage) {
             donjon.isExplored = true;
             donjon.etages.push({ couloirs: [{ portes: [{ status: "boss" }] }] });
-            
+
         } else {
             donjon.etages.push({
                 couloirs: [donjon.getEmptyHall(4)]
             });
+            donjon.resetTemps();
         }
         this.setState({
             donjon: donjon
@@ -53,32 +58,32 @@ class Donjon extends React.Component {
         const etage = portes.map((porte, index) => {
             if (porte.status === "open") {
 
-                return <button key={index} className="door open" onClick={() => {
+                return <div key={index} className="door open" onClick={() => {
                     this.rentrer(index);
-                }}>Monstre</button>
+                }}><img src={Bat} alt='bat' className="door-monster" /></div>
             } else if (porte.status === "close") {
 
                 return (
-                    <button key={index} className="door close" onClick={() => {
+                    <div key={index} className="door close" onClick={() => {
                         this.ouvrirPorte(index);
                     }
                     }>
 
-                    </button>
+                    </div>
                 );
             } else if (porte.status === "defeat") {
                 return (
-                    <div key={index} className="door defeat">
-                        X
-                </div>
+                    <div key={index} className="door open">
+                        <img src={Skull} alt='skull' className="door-skull" />
+                    </div>
                 );
-            } else if(porte.status === "boss"){
-                return(
-                <button key={index} className="door boss" onClick={() => {
-                    this.rentrer(index);
-                }}>Boss</button>
+            } else if (porte.status === "boss") {
+                return (
+                    <button key={index} className="door boss" onClick={() => {
+                        this.rentrer(index);
+                    }}>Boss</button>
                 );
-            }else {
+            } else {
                 return null;
             }
         });
@@ -86,16 +91,20 @@ class Donjon extends React.Component {
     }
 
     render() {
-        const temps = (Utils.last(this.state.donjon.etages).couloirs.length - 1) * 4;
+        const temps = this.state.donjon.temps;
         const etageIsExplored = temps === 24;
         const etage = this.renderEtage(Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes)
 
 
         return (
             <div className='donjon'>
-                <h2>Etage -{this.state.donjon.etages.length}</h2>
-                <div className="temps">
-                    {temps}/24
+                <div className="topbar">
+                    <div className="box">
+                        <h2>Etage -{this.state.donjon.etages.length}</h2>
+                    </div>
+                    <div className="box">
+                        <Temps temps={temps}/>
+                    </div>
                 </div>
                 <div className="etage">
                     {etage}

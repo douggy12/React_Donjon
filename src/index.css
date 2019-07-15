@@ -12,6 +12,7 @@ body {
     content: "";
     display: table;
   }
+
   
   .status {
     margin-bottom: 10px;
@@ -66,4 +67,5 @@ body {
     background-color: firebrick;
     margin: 4px;
   }
+
   

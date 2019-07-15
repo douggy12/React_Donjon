@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Mort extends React.Component {
 
     constructor(props) {
@@ -9,13 +10,17 @@ class Mort extends React.Component {
     recommencer() {
         console.log("restart requis");
         const donjon = this.props.donjon;
+        const hero = this.props.hero;
         donjon.reset();
-        this.props.move("Donjon",donjon);
+        hero.reset();
+        this.props.move("Donjon",donjon,hero);
     }
     render() {
             return (
                 <div className="mort">
+                    <div className="box">
                     Vous êtes mort dans d'atroces souffrances !
+                    </div>
                 <button onClick={() => this.recommencer()}>Recommencer !</button>
                 </div>
             );        
