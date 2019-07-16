@@ -6,6 +6,20 @@ img {
     image-rendering: pixelated;
     vertical-align: middle;
 }
+button {
+    background-color: #523a42;
+    -webkit-appearance: unset;
+    border:3px solid #1c1117;
+    box-shadow: 2px 2px 2px black;
+    padding: 4px 8px;
+    font-family: 'pixeled',Lato,LatoExtended,sans-serif;
+}
+button:focus{
+    outline: none;
+}
+button:active{
+    box-shadow: none;
+}
 .game {
     background-image: url('./asset/wall_1.png');
     position:fixed;
@@ -125,10 +139,21 @@ background-repeat: no-repeat;
     color: rgb(148, 0, 0);
 }
 
-
+.action{
+    display: flex;
+    flex-direction: column;
+}
 .stats {
     display: flex;
 }
+.roll {
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 10px;
+}
+
 .hero .titre {
     padding: 3px;
 }
