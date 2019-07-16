@@ -20,8 +20,17 @@ class Hero{
         this.xp = 0;
         this.lvl = 1;
     }
-    getNextLvlXp(){
-        return Math.floor(Math.exp(this.lvl)+1);
+    getNextLvlXp(lvl){
+        return Math.floor(Math.exp(lvl)+1);
+    }
+    earnXp(xp){
+        this.xp += xp;
+        this.lvlUp();
+    }
+    lvlUp(){
+        while(this.xp >= this.getNextLvlXp(this.lvl)){
+            this.lvl += 1;
+        }
     }
     
 }

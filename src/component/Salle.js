@@ -23,6 +23,7 @@ class Salle extends React.Component {
                     { type: "agilite", value: 2, multi: true, damages: [null, 1] }
                 ],
                 requiredDone: false,
+                xp: 1,
             },
             selectedDice: { type: null, index: null },
             isDicesRolled: false,
@@ -61,6 +62,9 @@ class Salle extends React.Component {
     }
 
     gagner() {
+        let hero = this.state.hero;
+        hero.earnXp(this.state.monstre.xp);
+        this.setState({hero:hero});
         Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
         return this.props.move("Donjon", this.state.donjon, this.state.hero);
     }

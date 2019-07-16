@@ -16,7 +16,7 @@ class Hero extends React.Component {
                 </div>
                 <div className="topbar">
                     <div className="lvl">{'LVL : ' + this.props.hero.lvl}</div>
-                    <div className="xp">{'XP : ' + this.props.hero.xp + "/" + this.props.hero.getNextLvlXp()}</div>
+                    <div className="xp">{'XP : ' + this.props.hero.xp + "/" + this.props.hero.getNextLvlXp(this.props.hero.lvl)}</div>
                 </div>
             </div>
         );
