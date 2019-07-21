@@ -9,7 +9,7 @@ import Hero from './heros/Hero';
 var start = () =>{
   console.log("game: start");
     ReactDOM.render(
-      <Game donjon= {new DonjonProt()} hero = {new Hero()}/>,
+      <Game game={{donjon: new DonjonProt(), hero : new Hero()}}/>,
       document.getElementById('root'),
     );
   }

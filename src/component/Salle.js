@@ -12,9 +12,9 @@ class Salle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            donjon: props.donjon,
-            hero: props.hero,
-            stockDe: this.getStockDe(props.hero.stats),
+            donjon: props.game.donjon,
+            hero: props.game.hero,
+            stockDe: this.getStockDe(props.game.hero.stats),
             monstre: {
                 nom: "Rat affamé",
                 stats: [
@@ -65,21 +65,20 @@ class Salle extends React.Component {
         let hero = this.state.hero;
         hero.earnXp(this.state.monstre.xp);
         this.setState({hero:hero});
-        Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
-        return this.props.move("Donjon", this.state.donjon, this.state.hero);
+        Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
+        return this.props.move("Donjon", {donjon:this.state.donjon, hero:this.state.hero});
     }
     perdre() {
 
         if (this.state.hero.sante > 0) {
+            
             let donjon = this.state.donjon;
             this.calculateDamage();
-
-            Utils.last(Utils.last(this.props.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'open';
-            this.setState({ donjon: donjon });
-            this.props.move("Donjon", this.state.donjon, this.state.hero);
+            this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:false});
         }
         if (this.state.hero.sante < 1) {
-            this.props.move("Mort", this.state.donjon, this.state.hero);
+            
+            this.props.move("Mort",{donjon:this.state.donjon, hero:this.state.hero});
         }
 
     }
