@@ -9,9 +9,10 @@ class Donjon extends React.Component {
 
         super(props);
         this.state = {
-            donjon: props.donjon,
-            hero: props.hero
+            donjon: props.game.donjon,
+            hero: props.game.hero
         }
+        
         console.log("donjon:construct");
     }
 
@@ -32,9 +33,9 @@ class Donjon extends React.Component {
     }
 
     rentrer(index) {
-        let donjon = this.props.donjon;
+        let donjon = this.state.donjon;
         Utils.last(Utils.last(donjon.etages).couloirs).portes[index].status = "fight"
-        this.props.move("Salle", this.props.donjon, this.props.hero);
+        this.props.move("Salle", {donjon:this.state.donjon, hero:this.state.hero});
     }
 
     descendre() {
@@ -93,7 +94,8 @@ class Donjon extends React.Component {
     render() {
         const temps = this.state.donjon.temps;
         const etageIsExplored = temps === 24;
-        const etage = this.renderEtage(Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes)
+        const etage = this.renderEtage(Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes);
+       
 
 
         return (
@@ -113,7 +115,9 @@ class Donjon extends React.Component {
                 {!etageIsExplored && !this.state.donjon.isExplored && <button onClick={() => this.explorer()}>Explorer</button>}
 
                 {!this.state.donjon.isExplored && <button onClick={() => this.descendre()}>Descendre</button>}
+                
             </div>
+            
         );
     }
 }

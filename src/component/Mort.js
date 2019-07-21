@@ -13,7 +13,7 @@ class Mort extends React.Component {
         const hero = this.props.hero;
         donjon.reset();
         hero.reset();
-        this.props.move("Donjon",donjon,hero);
+        this.props.move("Donjon",{donjon:donjon, hero:hero});
     }
     render() {
             return (

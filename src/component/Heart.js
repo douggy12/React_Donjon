@@ -1,6 +1,6 @@
 import React from 'react';
-import Heart_full from '../asset/heart_sup_full.png';
-import Heart_empty from '../asset/heart_sup_empty.png';
+import Heart_full from '../asset/heart.png';
+import Heart_empty from '../asset/heart_empty.png';
 
 class Heart extends React.Component {
 
