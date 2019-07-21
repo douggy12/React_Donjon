@@ -15,6 +15,19 @@ class Resultat extends React.Component {
         this.props.game.donjon.temps += 1;        
         this.props.move("Donjon",this.props.game);
     }
+    renderGagne(){
+        this.props.game.hero.earnXp(this.props.game.monstre.xp);        
+        Utils.last(Utils.last(this.props.game.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
+        return(
+            <div>
+                <div className='box'>
+                    <h2>Vous avez écrasé {this.props.game.monstre.nom}</h2>
+                    <div>vous avez gagné {this.props.game.monstre.xp} XP</div>
+                </div>
+                <button onClick={()=> this.props.move("Donjon",this.props.game)}>OK</button>
+            </div>
+        );
+    }
 
     renderPerdu() {
         return (
@@ -35,6 +48,7 @@ class Resultat extends React.Component {
         return (
             <div className='resultat'>
                 {!this.props.game.gagne && this.renderPerdu()}
+                {this.props.game.gagne && this.renderGagne()}
             </div>
         );
     }

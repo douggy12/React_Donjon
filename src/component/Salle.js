@@ -62,11 +62,8 @@ class Salle extends React.Component {
     }
 
     gagner() {
-        let hero = this.state.hero;
-        hero.earnXp(this.state.monstre.xp);
-        this.setState({hero:hero});
-        Utils.last(Utils.last(this.state.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
-        return this.props.move("Donjon", {donjon:this.state.donjon, hero:this.state.hero});
+        
+        return this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:true});
     }
     perdre() {
 
