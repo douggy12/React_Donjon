@@ -1,3 +1,4 @@
+/*General*/
 @font-face{
     font-family: 'pixeled';
     src: url('./asset/04b03.woff2');
@@ -20,9 +21,12 @@ button:focus{
 button:active{
     box-shadow: none;
 }
+body{
+    margin: 0;
+}
 .game {
     background-image: url('./asset/wall_1.png');
-    position:fixed;
+    /* position:fixed; */
     padding:0;
     margin:0;
 
@@ -30,10 +34,18 @@ button:active{
     left:0;
 
     width: 100%;
-    height: 100%;
+    min-height: 600px;
 
     font-family: 'pixeled',Lato,LatoExtended,sans-serif;
   }
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    /* flex-direction: column; */
+}
+    /* Box */
   .box {
     background-color: #523a42;
     border: 8px solid #1c1117;
@@ -45,6 +57,7 @@ button:active{
     justify-content: space-evenly;
 
   }
+
   .box>.temps{
       font-size: 22 px;
       
@@ -53,15 +66,9 @@ button:active{
       width: 50px;
         
   }
-  .topbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 5px;
-      /* flex-direction: column; */
-  }
+ 
 
-  
+ /* Donjon  */
 .etage {
 display: flex;
 flex-wrap: wrap;
@@ -110,9 +117,8 @@ background-repeat: no-repeat;
     top: 201px;
     left: 120px;
 }
-.salle {
-    
-}
+
+/* Salle */
 .combat{
     background-color: blueviolet;
     display: flex;
@@ -122,13 +128,45 @@ background-repeat: no-repeat;
     flex:1;
     display: flex;
     justify-content: space-evenly;
-
+    padding: 10px;
 }
+/* hero detail */
 .hero_detail{
-    width: 50%;
+    flex: 1;
+    
 }
+.hero_detail .content{
+    display: flex;
+    justify-content: space-between;
+}
+.hero_detail .portrait{
+    padding: 5px;
+    
+}
+.hero_detail .stats {
+    display: flex;
+    flex-direction: column;
+    
+}
+.hero_detail .stats>div{
+    width:40px;
+    height:40px;
+    
+    margin-bottom: 4px;
+}
+
 .hero_detail .portrait>img{
-    width: 60%;
+   height:270px
+}
+.equipement{
+    display: flex;
+    flex-direction: column;
+}
+.equipement>div{
+    background-color: burlywood;
+    margin: 3px;
+    width: 40px;
+    height :40px;
 }
 .monstre {
     background-color: rgb(226, 225, 225);
@@ -176,13 +214,13 @@ background-repeat: no-repeat;
     border: 1px solid white;
 }
 
-.force .de,.force.cible.fill {
+.force .de,.force.cible.fill,  .hero_detail .stats .force{
     background-color: peru;
 }
-.agilite .de,.agilite.cible.fill {
+.agilite .de,.agilite.cible.fill, .hero_detail .stats .agilite {
     background-color: mediumseagreen;
 }
-.magie .de,.magie.cible.fill {
+.magie .de,.magie.cible.fill, .hero_detail .stats .magie {
     background-color: navy;
 }
 .force.cible {
