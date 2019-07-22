@@ -137,7 +137,7 @@ background-repeat: no-repeat;
 }
 .hero_detail .content{
     display: flex;
-    justify-content: space-between;
+    
 }
 .hero_detail .portrait{
     padding: 5px;
@@ -163,10 +163,31 @@ background-repeat: no-repeat;
     flex-direction: column;
 }
 .equipement>div{
-    background-color: burlywood;
-    margin: 3px;
+    background-color: rgb(177, 170, 153);
+    margin-bottom: 4px;
+    margin-left: 4px;
     width: 40px;
     height :40px;
+    background-blend-mode: soft-light;
+    background-size: 100%; 
+}
+.equipement .tete{
+    background-image: url("asset/empty_head.png");
+}
+.equipement .buste{
+    background-image: url(asset/empty_torso.png);
+}
+.equipement .gant{
+    background-image: url(asset/empty_gauntlet.png);
+}
+.equipement .botte{
+    background-image: url(asset/empty_feet.png);
+}
+.equipement .main{
+    background-image: url(asset/empty_hand.png);
+}
+.equipement .gauche{
+    transform: scaleX(-1);
 }
 .monstre {
     background-color: rgb(226, 225, 225);
