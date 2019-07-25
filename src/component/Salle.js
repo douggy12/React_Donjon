@@ -6,6 +6,8 @@ import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Temps from './Temps';
 import Hero from './Hero';
+import Item from '../equipement/Item';
+import RatAffame from '../monstre/RatAffame';
 
 
 class Salle extends React.Component {
@@ -15,19 +17,11 @@ class Salle extends React.Component {
             donjon: props.game.donjon,
             hero: props.game.hero,
             stockDe: this.getStockDe(props.game.hero.stats),
-            monstre: {
-                nom: "Rat affamé",
-                stats: [
-                    { type: "force", value: 2, multi: false, required: true, damages: [] },
-                    { type: "force", value: 3, multi: false, damages: [1, 1] },
-                    { type: "agilite", value: 2, multi: true, damages: [null, 1] }
-                ],
-                requiredDone: false,
-                xp: 1,
-            },
+            monstre: new RatAffame(),
             selectedDice: { type: null, index: null },
             isDicesRolled: false,
-        }
+        };
+        console.log(Utils.getRandomInt(100)); 
     }
     rollDices() {
         let stockDeForce = this.state.stockDe.force.map((type) => {
