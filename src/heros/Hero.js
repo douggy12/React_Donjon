@@ -5,6 +5,22 @@ class Hero{
     stats= this.getInitialStats();
     xp = 0;
     lvl = 1;
+    equipement = this.getInitialEquipement();
+
+    getInitialEquipement(){
+        return {
+            helmet:{},
+            torso:{},
+            gauntlet:{},
+            boots:{},
+            handR:{},
+            handL:{}
+        };
+    }
+
+    equip(item){
+        this.equipement[item.type] = item;
+    }
 
     getInitialStats(){
         return {
