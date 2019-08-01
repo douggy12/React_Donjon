@@ -17,7 +17,6 @@ class Resultat extends React.Component {
         this.props.move("Donjon",this.props.game);
     }
     equiper(objet){
-        console.log(objet);
         this.props.game.hero.equip(objet);
         this.props.move("Donjon",this.props.game);
 
@@ -38,7 +37,6 @@ class Resultat extends React.Component {
         this.props.game.hero.earnXp(this.props.game.monstre.xp);      
         Utils.last(Utils.last(this.props.game.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
         const earnedObject = this.props.game.monstre.dropObject();
-        console.log(earnedObject);
         return(
             <div>
                 <div className='box'>

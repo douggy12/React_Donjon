@@ -28,8 +28,6 @@ class RatAffame{
     dropObject(){
         for (const object of this.dropTable) {
             const de = Utils.getRandomInt(100);
-            console.log(object);
-            console.log(de);
             if(de <= object.chance){
                 return object;
             }
