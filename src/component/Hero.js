@@ -18,7 +18,7 @@ class Hero extends React.Component {
             <div className="hero_detail">
                 <div className="topbar">
                     <div className="nom">{this.props.hero.name}</div>
-                    <div className="sante"><HealthBar full={this.props.hero.sante} empty={this.props.hero.damage} /></div>
+                    <div className="sante"><HealthBar full={this.props.hero.getSante()} empty={this.props.hero.damage} /></div>
                 </div>
                 <div className="content">
                
