@@ -57,19 +57,10 @@ class Salle extends React.Component {
         
         return this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:true});
     }
-    perdre() {
-
-        if (this.state.hero.sante > 0) {
-            
+    perdre() {            
             let donjon = this.state.donjon;
             this.calculateDamage();
             this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:false});
-        }
-        if (this.state.hero.sante < 1) {
-            
-            this.props.move("Mort",{donjon:this.state.donjon, hero:this.state.hero});
-        }
-
     }
 
     calculateDamage() {

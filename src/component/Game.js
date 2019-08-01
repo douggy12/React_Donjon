@@ -22,12 +22,13 @@ class Game extends React.Component {
     }
     route(){
         console.log(this.state.currentState);
-        if(this.state.currentState === "Donjon"){
+        console.log(this.props.game.hero.getSante()-this.props.game.hero.damage);
+        if(this.props.game.hero.getSante()-this.props.game.hero.damage<1){
+            return <Mort move={this.move} game={this.state.game}/>
+        }else if(this.state.currentState === "Donjon"){
             return <Donjon move={this.move} game={this.state.game}/>;
         }else if (this.state.currentState === "Salle"){
             return <Salle move={this.move} game={this.state.game}/>;
-        }else if (this.state.currentState === "Mort"){
-            return <Mort move={this.move} game={this.state.game}/>
         }else if (this.state.currentState === "Resultat"){
             return <Resultat move={this.move} game={this.state.game}/>
         }
