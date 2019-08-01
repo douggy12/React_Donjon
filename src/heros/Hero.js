@@ -17,6 +17,24 @@ class Hero{
             handL:null
         };
     }
+    getSante(){
+        
+        return this.sante + + this.getEquipmentStat("sante");
+    }
+    getStat(stat){
+        
+        return this.stats[stat] + this.getEquipmentStat(stat);
+    }
+
+    getEquipmentStat(stat){
+        let equipementStat = 0;
+        Object.values(this.equipement).forEach((item)=>{
+            if(item !== null && item.stats.hasOwnProperty(stat)){
+                equipementStat += item.stats[stat];
+            }
+        });
+        return equipementStat;
+    }
 
     equip(item){
         if((item !== null || item !== undefined) && this.equipement.hasOwnProperty(item.type)){

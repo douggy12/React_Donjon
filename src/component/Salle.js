@@ -13,12 +13,13 @@ class Salle extends React.Component {
         this.state = {
             donjon: props.game.donjon,
             hero: props.game.hero,
-            stockDe: this.getStockDe(props.game.hero.stats),
+            stockDe: this.getStockDe(props.game.hero),
             monstre: props.game.donjon.getFightingChamber().monstre,
             selectedDice: { type: null, index: null },
             isDicesRolled: false,
             
         };
+        console.log(this.state.hero);
     }
     rollDices() {
         let stockDeForce = this.state.stockDe.force.map((type) => {
@@ -33,11 +34,11 @@ class Salle extends React.Component {
         this.setState({ stockDe: { force: stockDeForce, agilite: stockDeAgilite, magie: stockDeMagie } });
     }
 
-    getStockDe(stats) {
+    getStockDe(hero) {
         return {
-            force: Array(stats.force).fill({ value: null, isDispo: true }),
-            agilite: Array(stats.agilite).fill({ value: null, isDispo: true }),
-            magie: Array(stats.magie).fill({ value: null, isDispo: true }),
+            force: Array(hero.getStat("force")).fill({ value: null, isDispo: true }),
+            agilite: Array(hero.getStat("agilite")).fill({ value: null, isDispo: true }),
+            magie: Array(hero.getStat("magie")).fill({ value: null, isDispo: true }),
         }
     }
 

@@ -20,11 +20,7 @@ class Hero extends React.Component {
                 </div>
                 <div className="content">
                
-                    <div className="stats">
-                        <div className="force">{this.props.hero.stats.force}</div>
-                        <div className="agilite">{this.props.hero.stats.agilite}</div>
-                        <div className="magie">{this.props.hero.stats.magie}</div>
-                    </div>
+                   
                     <div className="equipement">
                         {this.renderEquipment()}
                     </div>
