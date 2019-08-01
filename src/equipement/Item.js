@@ -8,6 +8,7 @@ class Item {
     }
     image;
     rarete=0;
+    
     constructor(type,nom,stats,rarete,image){
         this.type = type;
         this.nom = nom;

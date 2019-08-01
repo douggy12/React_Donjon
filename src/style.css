@@ -26,7 +26,7 @@ body{
 }
 .game {
     background-image: url('./asset/wall_1.png');
-    /* position:fixed; */
+    position: absolute;
     padding:0;
     margin:0;
 
@@ -162,31 +162,41 @@ background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
 }
-.equipement>div{
+.equipement .slot{
     background-color: rgb(177, 170, 153);
     margin-bottom: 4px;
     margin-left: 4px;
     width: 40px;
     height :40px;
-    background-blend-mode: soft-light;
     background-size: 100%; 
+    
 }
-.equipement .tete{
+.equipement .empty{
+    opacity: 0.6;
+    background-blend-mode: soft-light;
+}
+.equipement>div>img{
+    width: 38px;
+    background-color: #1c1117;
+    border: 1px solid white;
+}
+.equipement .helmet{
     background-image: url("asset/empty_head.png");
 }
-.equipement .buste{
+.equipement .torso{
     background-image: url(asset/empty_torso.png);
 }
-.equipement .gant{
+.equipement .gauntlet{
     background-image: url(asset/empty_gauntlet.png);
 }
-.equipement .botte{
+.equipement .boots{
     background-image: url(asset/empty_feet.png);
 }
-.equipement .main{
+.equipement .handR{
     background-image: url(asset/empty_hand.png);
 }
-.equipement .gauche{
+.equipement .handL{
+    background-image: url(asset/empty_hand.png);
     transform: scaleX(-1);
 }
 .monstre {
@@ -277,4 +287,12 @@ background-repeat: no-repeat;
 }
 .malus>img{
     width:15px;
+}
+/* butin */
+.resultat .item>img {
+    width: 100%;
+}
+.resultat .item .box {
+    display: flex;
+    flex-direction: column;
 }

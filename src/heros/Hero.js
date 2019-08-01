@@ -9,17 +9,23 @@ class Hero{
 
     getInitialEquipement(){
         return {
-            helmet:{},
-            torso:{},
-            gauntlet:{},
-            boots:{},
-            handR:{},
-            handL:{}
+            helmet:null,
+            torso:null,
+            gauntlet:null,
+            boots:null,
+            handR:null,
+            handL:null
         };
     }
 
     equip(item){
-        this.equipement[item.type] = item;
+        if((item !== null || item !== undefined) && this.equipement.hasOwnProperty(item.type)){
+            this.equipement[item.type] = item;
+        }else{
+            console.log('erreur item: ' + item);
+        }
+
+        
     }
 
     getInitialStats(){
@@ -42,6 +48,9 @@ class Hero{
     earnXp(xp){
         this.xp += xp;
         this.lvlUp();
+    }
+    earnObject(object){
+        this.equipement[object.type] = object;
     }
     lvlUp(){
         while(this.xp >= this.getNextLvlXp(this.lvl)){
