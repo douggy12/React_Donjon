@@ -175,7 +175,7 @@ background-repeat: no-repeat;
     opacity: 0.6;
     background-blend-mode: soft-light;
 }
-.equipement>div>img{
+.equipement>.slot>.item>img{
     width: 38px;
     background-color: #1c1117;
     border: 1px solid white;

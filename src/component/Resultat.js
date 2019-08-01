@@ -26,7 +26,7 @@ class Resultat extends React.Component {
         return(
             <div className='butin'>
                 <h3>Vous avez trouvé {object.item.nom}</h3>
-                <Item item={object} />
+                <Item item={object.item} render="info" />
                 <button onClick={()=>this.equiper(object.item)}>Equiper</button>
                 <button onClick={()=> this.props.move("Donjon",this.props.game)}>Jeter</button>
             </div>

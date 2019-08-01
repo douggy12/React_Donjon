@@ -1,6 +1,7 @@
 import React from 'react';
 import HealthBar from './HealthBar';
 import Portrait from '../asset/knight.png';
+import Item from './Item';
 
 class Hero extends React.Component {
     renderEquipment(){
@@ -8,7 +9,8 @@ class Hero extends React.Component {
         return Object.entries(this.props.hero.equipement).map(([key, value])=>{
             cpt++;
             const empty = value===null?"  empty":"";
-            return <div key={cpt} className={key + " slot" + empty}>{value!==null&&<img src={value.image} alt={key} />}</div>
+            console.log(value);
+            return <div key={cpt} className={key + " slot" + empty}>{value!==null&&<Item item={value} render="mini"/>}</div>
         });
     }
     render() {
