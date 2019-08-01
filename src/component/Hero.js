@@ -3,6 +3,14 @@ import HealthBar from './HealthBar';
 import Portrait from '../asset/knight.png';
 
 class Hero extends React.Component {
+    renderEquipment(){
+        let cpt = 0;
+        return Object.entries(this.props.hero.equipement).map(([key, value])=>{
+            cpt++;
+            const empty = value===null?"  empty":"";
+            return <div key={cpt} className={key + " slot" + empty}>{value!==null&&<img src={value.image} alt={key} />}</div>
+        });
+    }
     render() {
         return (
             <div className="hero_detail">
@@ -18,13 +26,9 @@ class Hero extends React.Component {
                         <div className="magie">{this.props.hero.stats.magie}</div>
                     </div>
                     <div className="equipement">
-                        <div className="tete"></div>
-                        <div className="buste"></div>
-                        <div className="gant"></div>
-                        <div className="botte"></div>
-                        <div className="main"></div>
-                        <div className="main gauche"></div>                        
+                        {this.renderEquipment()}
                     </div>
+                    
                     <div className="portrait">
                         <img src={Portrait} alt='knight' />
 
