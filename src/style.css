@@ -58,6 +58,53 @@ body{
 
   }
 
+  .mini.box {
+        position: relative;
+        margin: 0;
+        border: 2px solid #1c1117;
+        /* box-shadow: 3px 3px 3px black; */
+        /* margin: 25px; */
+        padding: 5px;
+        left: 20px;
+        top: -20px;   
+        width: 100px;
+        font-size: 0.7em;
+        z-index: 10; 
+  }
+
+    .box .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .box .info .stats {
+        display: flex;
+        justify-content: space-around;
+        
+    }
+    .box .info .stats>div {
+        display: flex;
+        /* align-content: center; */
+        align-items: center;
+        justify-content: center;
+        /* text-align: center; */
+    }
+    .box .info .stats .magie {
+        color: cornflowerblue;
+    }
+    .equipement .info .stats .sante {
+        background-image: url(asset/heart_sup_full.png);
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+        color: black;
+    }
+    .box .info .nom {
+        padding:5px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
   .box>.temps{
       font-size: 22 px;
       
@@ -143,12 +190,8 @@ background-repeat: no-repeat;
     padding: 5px;
     
 }
-.hero_detail .stats {
-    display: flex;
-    flex-direction: column;
-    
-}
-.hero_detail .stats>div{
+
+.info .stats>div{
     width:40px;
     height:40px;
     
@@ -244,13 +287,13 @@ background-repeat: no-repeat;
     border: 1px solid white;
 }
 
-.force .de,.force.cible.fill,  .hero_detail .stats .force{
+.force .de,.force.cible.fill,  .info .stats .force{
     background-color: peru;
 }
-.agilite .de,.agilite.cible.fill, .hero_detail .stats .agilite {
+.agilite .de,.agilite.cible.fill, .info .stats .agilite {
     background-color: mediumseagreen;
 }
-.magie .de,.magie.cible.fill, .hero_detail .stats .magie {
+.magie .de,.magie.cible.fill, .info .stats .magie {
     background-color: navy;
 }
 .force.cible {
