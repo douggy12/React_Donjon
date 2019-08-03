@@ -193,11 +193,10 @@ background-repeat: no-repeat;
     background-image: url(asset/empty_feet.png);
 }
 .equipement .handR{
-    background-image: url(asset/empty_hand.png);
+    background-image: url(asset/Rhand.png);
 }
 .equipement .handL{
-    background-image: url(asset/empty_hand.png);
-    transform: scaleX(-1);
+    background-image: url(asset/Lhand.png);  
 }
 .monstre {
     background-color: rgb(226, 225, 225);
