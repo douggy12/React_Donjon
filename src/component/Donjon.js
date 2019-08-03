@@ -3,6 +3,7 @@ import Utils from '../utils/Utils';
 import Bat from '../asset/bat.png';
 import Skull from '../asset/skull.png';
 import Temps from './Temps';
+import RatAffame from '../monstre/RatAffame';
 
 class Donjon extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Donjon extends React.Component {
 
     ouvrirPorte(index) {
         let donjon = this.state.donjon;
-        Utils.last(Utils.last(donjon.etages).couloirs).portes[index] = { status: "open" };
+        Utils.last(Utils.last(donjon.etages).couloirs).portes[index] = { status: "open",monstre:new RatAffame() };
         this.setState({
             donjon: donjon
         })
@@ -61,7 +62,7 @@ class Donjon extends React.Component {
 
                 return <div key={index} className="door open" onClick={() => {
                     this.rentrer(index);
-                }}><img src={Bat} alt='bat' className="door-monster" /></div>
+                }}><img src={this.state.donjon.getActualHall()[index].monstre.image} alt='monstre' className="door-monster" /></div>
             } else if (porte.status === "close") {
 
                 return (

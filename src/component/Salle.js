@@ -7,27 +7,19 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import Temps from './Temps';
 import Hero from './Hero';
 
-
 class Salle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             donjon: props.game.donjon,
             hero: props.game.hero,
-            stockDe: this.getStockDe(props.game.hero.stats),
-            monstre: {
-                nom: "Rat affamé",
-                stats: [
-                    { type: "force", value: 2, multi: false, required: true, damages: [] },
-                    { type: "force", value: 3, multi: false, damages: [1, 1] },
-                    { type: "agilite", value: 2, multi: true, damages: [null, 1] }
-                ],
-                requiredDone: false,
-                xp: 1,
-            },
+            stockDe: this.getStockDe(props.game.hero),
+            monstre: props.game.donjon.getFightingChamber().monstre,
             selectedDice: { type: null, index: null },
             isDicesRolled: false,
-        }
+            
+        };
+        console.log(this.state.hero);
     }
     rollDices() {
         let stockDeForce = this.state.stockDe.force.map((type) => {
@@ -42,11 +34,11 @@ class Salle extends React.Component {
         this.setState({ stockDe: { force: stockDeForce, agilite: stockDeAgilite, magie: stockDeMagie } });
     }
 
-    getStockDe(stats) {
+    getStockDe(hero) {
         return {
-            force: Array(stats.force).fill({ value: null, isDispo: true }),
-            agilite: Array(stats.agilite).fill({ value: null, isDispo: true }),
-            magie: Array(stats.magie).fill({ value: null, isDispo: true }),
+            force: Array(hero.getStat("force")).fill({ value: null, isDispo: true }),
+            agilite: Array(hero.getStat("agilite")).fill({ value: null, isDispo: true }),
+            magie: Array(hero.getStat("magie")).fill({ value: null, isDispo: true }),
         }
     }
 
@@ -65,19 +57,10 @@ class Salle extends React.Component {
         
         return this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:true});
     }
-    perdre() {
-
-        if (this.state.hero.sante > 0) {
-            
+    perdre() {            
             let donjon = this.state.donjon;
             this.calculateDamage();
             this.props.move("Resultat", {donjon:this.state.donjon, hero:this.state.hero,monstre:this.state.monstre, gagne:false});
-        }
-        if (this.state.hero.sante < 1) {
-            
-            this.props.move("Mort",{donjon:this.state.donjon, hero:this.state.hero});
-        }
-
     }
 
     calculateDamage() {

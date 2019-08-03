@@ -1,3 +1,4 @@
+/*General*/
 @font-face{
     font-family: 'pixeled';
     src: url('./asset/04b03.woff2');
@@ -20,9 +21,12 @@ button:focus{
 button:active{
     box-shadow: none;
 }
+body{
+    margin: 0;
+}
 .game {
     background-image: url('./asset/wall_1.png');
-    position:fixed;
+    position: absolute;
     padding:0;
     margin:0;
 
@@ -30,10 +34,18 @@ button:active{
     left:0;
 
     width: 100%;
-    height: 100%;
+    min-height: 600px;
 
     font-family: 'pixeled',Lato,LatoExtended,sans-serif;
   }
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    /* flex-direction: column; */
+}
+    /* Box */
   .box {
     background-color: #523a42;
     border: 8px solid #1c1117;
@@ -45,6 +57,54 @@ button:active{
     justify-content: space-evenly;
 
   }
+
+  .mini.box {
+        position: relative;
+        margin: 0;
+        border: 2px solid #1c1117;
+        /* box-shadow: 3px 3px 3px black; */
+        /* margin: 25px; */
+        padding: 5px;
+        left: 20px;
+        top: -20px;   
+        width: 100px;
+        font-size: 0.7em;
+        z-index: 10; 
+  }
+
+    .box .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .box .info .stats {
+        display: flex;
+        justify-content: space-around;
+        
+    }
+    .box .info .stats>div {
+        display: flex;
+        /* align-content: center; */
+        align-items: center;
+        justify-content: center;
+        /* text-align: center; */
+    }
+    .box .info .stats .magie {
+        color: cornflowerblue;
+    }
+    .equipement .info .stats .sante {
+        background-image: url(asset/heart_sup_full.png);
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+        color: black;
+    }
+    .box .info .nom {
+        padding:5px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
   .box>.temps{
       font-size: 22 px;
       
@@ -53,15 +113,9 @@ button:active{
       width: 50px;
         
   }
-  .topbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 5px;
-      /* flex-direction: column; */
-  }
+ 
 
-  
+ /* Donjon  */
 .etage {
 display: flex;
 flex-wrap: wrap;
@@ -110,9 +164,8 @@ background-repeat: no-repeat;
     top: 201px;
     left: 120px;
 }
-.salle {
-    
-}
+
+/* Salle */
 .combat{
     background-color: blueviolet;
     display: flex;
@@ -122,13 +175,71 @@ background-repeat: no-repeat;
     flex:1;
     display: flex;
     justify-content: space-evenly;
-
+    padding: 10px;
 }
+/* hero detail */
 .hero_detail{
-    width: 50%;
+    flex: 1;
+    
 }
+.hero_detail .content{
+    display: flex;
+    
+}
+.hero_detail .portrait{
+    padding: 5px;
+    
+}
+
+.info .stats>div{
+    width:40px;
+    height:40px;
+    
+    margin-bottom: 4px;
+}
+
 .hero_detail .portrait>img{
-    width: 60%;
+   height:270px
+}
+.equipement{
+    display: flex;
+    flex-direction: column;
+}
+.equipement .slot{
+    background-color: rgb(177, 170, 153);
+    margin-bottom: 4px;
+    margin-left: 4px;
+    width: 40px;
+    height :40px;
+    background-size: 100%; 
+    
+}
+.equipement .empty{
+    opacity: 0.6;
+    background-blend-mode: soft-light;
+}
+.equipement>.slot>.item>img{
+    width: 38px;
+    background-color: #1c1117;
+    border: 1px solid white;
+}
+.equipement .helmet{
+    background-image: url("asset/empty_head.png");
+}
+.equipement .torso{
+    background-image: url(asset/empty_torso.png);
+}
+.equipement .gauntlet{
+    background-image: url(asset/empty_gauntlet.png);
+}
+.equipement .boots{
+    background-image: url(asset/empty_feet.png);
+}
+.equipement .handR{
+    background-image: url(asset/Rhand.png);
+}
+.equipement .handL{
+    background-image: url(asset/Lhand.png);  
 }
 .monstre {
     background-color: rgb(226, 225, 225);
@@ -176,13 +287,13 @@ background-repeat: no-repeat;
     border: 1px solid white;
 }
 
-.force .de,.force.cible.fill {
+.force .de,.force.cible.fill,  .info .stats .force{
     background-color: peru;
 }
-.agilite .de,.agilite.cible.fill {
+.agilite .de,.agilite.cible.fill, .info .stats .agilite {
     background-color: mediumseagreen;
 }
-.magie .de,.magie.cible.fill {
+.magie .de,.magie.cible.fill, .info .stats .magie {
     background-color: navy;
 }
 .force.cible {
@@ -218,4 +329,12 @@ background-repeat: no-repeat;
 }
 .malus>img{
     width:15px;
+}
+/* butin */
+.resultat .item>img {
+    width: 100%;
+}
+.resultat .item .box {
+    display: flex;
+    flex-direction: column;
 }

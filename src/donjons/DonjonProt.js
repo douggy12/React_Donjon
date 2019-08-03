@@ -25,6 +25,12 @@ class DonjonProt{
     getEmptyHall(nbDoor){
         return {portes: Array(nbDoor).fill({status: "close"})};
     }
+    getActualHall(){
+        return Utils.last(Utils.last(this.etages).couloirs).portes;
+    }
+    getFightingChamber(){
+        return Utils.last(Utils.last(this.etages).couloirs).portes.find(porte => porte.status === 'fight');
+    }
 }
 
 export default DonjonProt;

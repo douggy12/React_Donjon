@@ -5,6 +5,46 @@ class Hero{
     stats= this.getInitialStats();
     xp = 0;
     lvl = 1;
+    equipement = this.getInitialEquipement();
+
+    getInitialEquipement(){
+        return {
+            helmet:null,
+            torso:null,
+            gauntlet:null,
+            boots:null,
+            handR:null,
+            handL:null
+        };
+    }
+    getSante(){
+        
+        return this.sante + + this.getEquipmentStat("sante");
+    }
+    getStat(stat){
+        
+        return this.stats[stat] + this.getEquipmentStat(stat);
+    }
+
+    getEquipmentStat(stat){
+        let equipementStat = 0;
+        Object.values(this.equipement).forEach((item)=>{
+            if(item !== null && item.stats.hasOwnProperty(stat)){
+                equipementStat += item.stats[stat];
+            }
+        });
+        return equipementStat;
+    }
+
+    equip(item){
+        if((item !== null || item !== undefined) && this.equipement.hasOwnProperty(item.type)){
+            this.equipement[item.type] = item;
+        }else{
+            console.log('erreur item: ' + item);
+        }
+
+        
+    }
 
     getInitialStats(){
         return {
@@ -26,6 +66,9 @@ class Hero{
     earnXp(xp){
         this.xp += xp;
         this.lvlUp();
+    }
+    earnObject(object){
+        this.equipement[object.type] = object;
     }
     lvlUp(){
         while(this.xp >= this.getNextLvlXp(this.lvl)){
