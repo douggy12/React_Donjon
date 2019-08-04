@@ -19,7 +19,9 @@ class Salle extends React.Component {
             isDicesRolled: false,
             
         };
+        this.state.monstre.reset();
         console.log(this.state.hero);
+        console.log(this.state.monstre);
     }
     rollDices() {
         let stockDeForce = this.state.stockDe.force.map((type) => {

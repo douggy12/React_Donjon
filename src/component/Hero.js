@@ -9,7 +9,6 @@ class Hero extends React.Component {
         return Object.entries(this.props.hero.equipement).map(([key, value])=>{
             cpt++;
             const empty = value===null?"  empty":"";
-            console.log(value);
             return <div key={cpt} className={key + " slot" + empty}>{value!==null&&<Item item={value} render="mini"/>}</div>
         });
     }
