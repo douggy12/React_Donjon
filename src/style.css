@@ -92,10 +92,13 @@ body{
     .box .info .stats .magie {
         color: cornflowerblue;
     }
-    .equipement .info .stats .sante {
+    .resultat>div>.box{
+        flex-direction: column;
+    }
+    .info .stats .sante {
         background-image: url(asset/heart_sup_full.png);
         background-repeat: no-repeat;
-        background-size: auto;
+        background-size: contain;
         background-position: center;
         color: black;
     }

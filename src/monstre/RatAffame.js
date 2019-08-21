@@ -12,7 +12,7 @@ class RatAffame{
     image= ChauveSouris;
     stats= this.getInitialStats();
     requiredDone= false;
-    xp= 1;
+    xp= 10;
     dropTable = [
         {item:new Item('helmet','casquette à plume',{magie:1},0,Casque),chance:30},
         {item:new Item('handR','épée d\'entrainement',{force:1},0,Epee),chance:30},
