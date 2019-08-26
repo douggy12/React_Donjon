@@ -1,7 +1,7 @@
 import React from 'react';
-import Malus from '../../global/Malus';
-import Utils from '../../../utils/Utils';
-import Item from '../../global/Item';
+import Malus from 'component/global/Malus';
+import Utils from 'utils/Utils';
+import Item from 'component/global/Item';
 import PowerUp from './PowerUp';
 
 

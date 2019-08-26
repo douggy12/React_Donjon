@@ -1,8 +1,8 @@
 import React from 'react';
-import Donjon from './destination/donjon/Donjon';
-import Salle from './destination/salle/Salle';
-import Mort from './destination/resultat/Mort';
-import Resultat from './destination/resultat/Resultat';
+import Donjon from './donjon/Donjon';
+import Salle from './salle/Salle';
+import Mort from './resultat/Mort';
+import Resultat from './resultat/Resultat';
 import Utils from '../utils/Utils';
 
 class Game extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragPreviewImage, useDrag, DragSource } from 'react-dnd'
-import ItemTypes from '../../../utils/ItemTypes'
+import ItemTypes from 'utils/ItemTypes'
 
 class De extends React.Component{
 
