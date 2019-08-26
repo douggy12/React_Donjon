@@ -1,5 +1,5 @@
 import React from 'react';
-import Hourglass from '../asset/hourglass2.png';
+import Hourglass from '../../asset/hourglass2.png';
 
 class Malus extends React.Component{
     render(){

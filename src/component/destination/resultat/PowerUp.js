@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from './Item';
+import Item from '../../global/Item';
 
 class PowerUp extends React.Component{
     constructor(props){

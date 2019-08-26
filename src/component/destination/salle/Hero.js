@@ -1,7 +1,7 @@
 import React from 'react';
-import HealthBar from './HealthBar';
-import Portrait from '../asset/knight.png';
-import Item from './Item';
+import HealthBar from '../../global/HealthBar';
+import Portrait from 'asset/knight.png';
+import Item from '../../global/Item';
 
 class Hero extends React.Component {
     renderEquipment(){

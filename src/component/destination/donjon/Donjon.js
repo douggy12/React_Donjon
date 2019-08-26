@@ -1,9 +1,8 @@
 import React from 'react';
-import Utils from '../utils/Utils';
-import Bat from '../asset/bat.png';
-import Skull from '../asset/skull.png';
-import Temps from './Temps';
-import RatAffame from '../monstre/RatAffame';
+import Utils from 'utils/Utils';
+import Skull from 'asset/skull.png';
+import Temps from 'component/global/Temps';
+import RatAffame from 'monstre/RatAffame';
 
 class Donjon extends React.Component {
     constructor(props) {
