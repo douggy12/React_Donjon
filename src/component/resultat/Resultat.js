@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './resultat.module.css';
 import Malus from 'component/global/Malus';
 import Utils from 'utils/Utils';
 import Item from 'component/global/Item';
@@ -48,7 +49,7 @@ class Resultat extends React.Component {
         const earnedObject = this.props.game.monstre.dropObject();
         return(
             <div>
-                <div className='box'>
+                <div className={style.box}>
                     <h2>Vous avez écrasé {this.props.game.monstre.nom}</h2>
                     <div>vous avez gagné {this.props.game.monstre.xp} XP</div>
                     <PowerUp 
@@ -66,7 +67,7 @@ class Resultat extends React.Component {
     renderPerdu() {
         return (
             <div>
-                <div className='box'>
+                <div className={style.box}>
                     <h2>Dommage {this.props.game.monstre.nom} vous a terrassé !</h2>
                 </div>
 

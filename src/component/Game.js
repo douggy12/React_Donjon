@@ -4,6 +4,7 @@ import Salle from './salle/Salle';
 import Mort from './resultat/Mort';
 import Resultat from './resultat/Resultat';
 import Utils from '../utils/Utils';
+import style from './game.module.css';
 
 class Game extends React.Component {
     constructor(props){
@@ -35,7 +36,7 @@ class Game extends React.Component {
     }
     render() {
         return(
-            <div className="game">
+            <div className={style.game}>
                 {this.route()}
             </div>
         );

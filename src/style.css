@@ -24,21 +24,7 @@ button:active{
 body{
     margin: 0;
 }
-.game {
-    background-image: url('./asset/wall_1.png');
-    position: absolute;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
-    width: 100%;
-    min-height: 600px;
-
-    font-family: 'pixeled',Lato,LatoExtended,sans-serif;
-  }
-  .topbar {
+.topbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -46,7 +32,7 @@ body{
     /* flex-direction: column; */
 }
     /* Box */
-  .box {
+.box {
     background-color: #523a42;
     border: 8px solid #1c1117;
     /* box-shadow: 3px 3px 3px black; */
@@ -55,22 +41,21 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
 
-  }
-
-  .mini.box {
-        position: relative;
-        margin: 0;
-        border: 2px solid #1c1117;
-        /* box-shadow: 3px 3px 3px black; */
-        /* margin: 25px; */
-        padding: 5px;
-        left: 20px;
-        top: -20px;   
-        width: 100px;
-        font-size: 0.7em;
-        z-index: 10; 
-  }
+.mini.box {
+    position: relative;
+    margin: 0;
+    border: 2px solid #1c1117;
+    /* box-shadow: 3px 3px 3px black; */
+    /* margin: 25px; */
+    padding: 5px;
+    left: 20px;
+    top: -20px;   
+    width: 100px;
+    font-size: 0.7em;
+    z-index: 10; 
+}
 
     .box .info{
         display: flex;
@@ -92,9 +77,7 @@ body{
     .box .info .stats .magie {
         color: cornflowerblue;
     }
-    .resultat>div>.box{
-        flex-direction: column;
-    }
+    
     .info .stats .sante {
         background-image: url(asset/heart_sup_full.png);
         background-repeat: no-repeat;
