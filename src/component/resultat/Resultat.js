@@ -1,10 +1,18 @@
 import React from 'react';
-import Malus from './Malus';
-import Utils from '../utils/Utils';
-import Item from './Item';
+import style from './resultat.module.css';
+import Malus from 'component/global/Malus';
+import Utils from 'utils/Utils';
+import Item from 'component/global/Item';
+import PowerUp from './PowerUp';
 
 
 class Resultat extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            powerToChoose: false,
+        }
+    }
 
     retry(){
         this.props.game.donjon.temps += 2;        
@@ -16,37 +24,42 @@ class Resultat extends React.Component {
         this.props.game.donjon.temps += 1;        
         this.props.move("Donjon",this.props.game);
     }
-    equiper(objet){
-        this.props.game.hero.equip(objet);
-        this.props.move("Donjon",this.props.game);
-
-
-    }
-    renderButin(object){
-        return(
-            <div className='butin'>
-                <h3>Vous avez trouvé {object.item.nom}</h3>
-                <Item item={object.item} render="info" />
-                <button onClick={()=>this.equiper(object.item)}>Equiper</button>
-                <button onClick={()=> this.props.move("Donjon",this.props.game)}>Jeter</button>
-            </div>
-           
-        );
-    }
-    renderGagne(){
-        this.props.game.hero.earnXp(this.props.game.monstre.xp);      
+    quit(){
         Utils.last(Utils.last(this.props.game.donjon.etages).couloirs).portes.find(porte => porte.status === 'fight').status = 'defeat';
+        this.props.move("Donjon",this.props.game);
+    }
+    equiper = (objet) =>{
+        this.props.game.hero.equip(objet);
+        this.quit();
+    }
+    ajouterPouvoir = (pouvoir) => {
+        this.props.game.hero.addPower(pouvoir);
+    }
+        
+    renderGagne(){
+        let lastLvl = this.props.game.hero.lvl;
+        this.props.game.hero.earnXp(this.props.game.monstre.xp);
+        const actualLvl = this.props.game.hero.lvl;
+        let powerUp=[];
+        while(lastLvl<actualLvl){
+            lastLvl++;
+            powerUp.push(lastLvl);
+        }
+        
         const earnedObject = this.props.game.monstre.dropObject();
         return(
             <div>
-                <div className='box'>
+                <div className={style.box}>
                     <h2>Vous avez écrasé {this.props.game.monstre.nom}</h2>
                     <div>vous avez gagné {this.props.game.monstre.xp} XP</div>
-                    {earnedObject !== null && this.renderButin(earnedObject)}
-                    {earnedObject === null &&<h3>Vous n'avez rien trouvé dans la salle</h3>}
-                    
+                    <PowerUp 
+                        powerUp = {powerUp} 
+                        earnedObject = {earnedObject}
+                        equiper = {this.equiper}
+                        ajouterPouvoir = {this.ajouterPouvoir}
+                    />                    
                 </div>
-                <button onClick={()=> this.props.move("Donjon",this.props.game)}>OK</button>
+                
             </div>
         );
     }
@@ -54,7 +67,7 @@ class Resultat extends React.Component {
     renderPerdu() {
         return (
             <div>
-                <div className='box'>
+                <div className={style.box}>
                     <h2>Dommage {this.props.game.monstre.nom} vous a terrassé !</h2>
                 </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Hourglass from '../asset/hourglass.png';
+import Hourglass from 'asset/hourglass.png';
 
 class Temps extends React.Component {
     render(){

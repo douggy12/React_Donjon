@@ -1,8 +1,8 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
-import Heart from '../asset/heart.png';
-import Hourglass from '../asset/hourglass2.png';
-import Shield from '../asset/shield.png';
+import Heart from 'asset/heart.png';
+import Hourglass from 'asset/hourglass2.png';
+import Shield from 'asset/shield.png';
 
 class DeCible extends React.Component {
     isPossible() {

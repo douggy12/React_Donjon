@@ -1,0 +1,4 @@
+.box{
+    composes : box from 'style.css';
+    flex-direction: column;
+}

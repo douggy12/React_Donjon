@@ -1,7 +1,7 @@
 import React from 'react';
-import HealthBar from './HealthBar';
-import Portrait from '../asset/knight.png';
-import Item from './Item';
+import HealthBar from 'component/global/HealthBar';
+import Portrait from 'asset/knight.png';
+import Item from 'component/global/Item';
 
 class Hero extends React.Component {
     renderEquipment(){
@@ -9,7 +9,6 @@ class Hero extends React.Component {
         return Object.entries(this.props.hero.equipement).map(([key, value])=>{
             cpt++;
             const empty = value===null?"  empty":"";
-            console.log(value);
             return <div key={cpt} className={key + " slot" + empty}>{value!==null&&<Item item={value} render="mini"/>}</div>
         });
     }

@@ -1,10 +1,10 @@
 import React from 'react';
-import Utils from '../utils/Utils';
+import Utils from 'utils/Utils';
 import De from './De';
 import DeCible from './DeCible';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import Temps from './Temps';
+import Temps from 'component/global/Temps';
 import Hero from './Hero';
 
 class Salle extends React.Component {
@@ -19,7 +19,9 @@ class Salle extends React.Component {
             isDicesRolled: false,
             
         };
+        this.state.monstre.reset();
         console.log(this.state.hero);
+        console.log(this.state.monstre);
     }
     rollDices() {
         let stockDeForce = this.state.stockDe.force.map((type) => {

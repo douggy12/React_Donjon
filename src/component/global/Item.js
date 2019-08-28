@@ -15,14 +15,16 @@ class Item extends React.Component{
     }
     renderStats(){
         let stats=[];
+        let key = 0;
         for (const stat in this.props.item.stats) {
-            let key = 0;
+            
             if (this.props.item.stats.hasOwnProperty(stat)) {
                 stats.push(
                     <div key = {key} className = {stat}> + {this.props.item.stats[stat]}</div>
                 ); 
-                key ++;               
+                              
             }
+            key ++; 
         }
         return(
             <div className='stats'>{stats}</div>
