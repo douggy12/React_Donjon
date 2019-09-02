@@ -2,6 +2,8 @@ import React from 'react';
 import HealthBar from 'component/global/HealthBar';
 import Portrait from 'asset/knight.png';
 import Item from 'component/global/Item';
+import Power from './Power';
+import style from "./hero.module.css";
 
 class Hero extends React.Component {
     renderEquipment(){
@@ -31,6 +33,16 @@ class Hero extends React.Component {
                 <div className="topbar">
                     <div className="lvl">{'LVL : ' + this.props.hero.lvl}</div>
                     <div className="xp">{'XP : ' + this.props.hero.xp + "/" + this.props.hero.getNextLvlXp(this.props.hero.lvl)}</div>
+                </div>
+                <div className={style.powerlist}>
+                    {this.props.hero.pouvoir.map((value,index) => {
+                        return(
+                            <Power
+                                key={index}
+                                power={value}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         );

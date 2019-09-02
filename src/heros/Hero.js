@@ -1,3 +1,4 @@
+import IconFp1 from 'asset/power/fp1.png';
 class Hero{
     name="BrakinBaad";
     sante=4;
@@ -6,6 +7,20 @@ class Hero{
     xp = 0;
     lvl = 1;
     equipement = this.getInitialEquipement();
+    pouvoir = [
+        {
+            nom: "Frappe précise",
+            sacrifier: {type:"agility",nb: 1,min:1},
+            ajouter: {type:"force",nb:2,on:1},
+            icon: IconFp1
+        },
+        {
+            nom: "Frappe précise",
+            sacrifier: {type:"agility",nb: 1,min:1},
+            ajouter: {type:"force",nb:2,on:1},
+            icon: IconFp1
+        }
+    ];
 
     getInitialEquipement(){
         return {

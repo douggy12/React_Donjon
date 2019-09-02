@@ -1,0 +1,13 @@
+.card{
+    background-color: rgb(177, 170, 153);
+    border-radius: 0 0 10px 10px;
+    padding: 5px;
+    width: 300px;
+    box-shadow: 2px 2px  2px black;
+}
+.verb{
+    margin-bottom: 5px;
+}
+.nom{
+    text-align: center;
+}
